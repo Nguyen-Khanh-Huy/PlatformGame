@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4715649951611661515}
   - component: {fileID: 834004298132282321}
   - component: {fileID: 1380698112780539757}
+  - component: {fileID: 2159257442426588874}
   m_Layer: 0
   m_Name: LaderTop
   m_TagString: Untagged
@@ -130,3 +131,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0555556, y: 1.1666666}
   m_EdgeRadius: 0
+--- !u!114 &2159257442426588874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5973017985198161966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df057095e32c3dc4f822321a295e46a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

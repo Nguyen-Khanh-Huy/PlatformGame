@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1837660794822800488}
   - component: {fileID: 5471640355311576938}
+  - component: {fileID: 393963497762515465}
+  - component: {fileID: 4412887219049009571}
   m_Layer: 0
   m_Name: Water_Top
   m_TagString: Untagged
@@ -84,6 +86,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &393963497762515465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5429813524252783409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ac1f5d892d26bd4fa0ec5b1d8baddb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &4412887219049009571
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5429813524252783409}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.00096321106, y: -0.000223957}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 9.222222, y: 1.0277778}
+    newSize: {x: 8.11, y: 0.2}
+    adaptiveTilingThreshold: 0
+    drawMode: 2
+    adaptiveTiling: 1
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 8.100397, y: 0.20038898}
+  m_EdgeRadius: 0
 --- !u!1 &7212551655898656872
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,6 +154,7 @@ GameObject:
   - component: {fileID: 246586958733154555}
   - component: {fileID: 8410902556428731456}
   - component: {fileID: 8463864883514642232}
+  - component: {fileID: 7764913030918962530}
   m_Layer: 0
   m_Name: WaterDeep
   m_TagString: Untagged
@@ -215,3 +275,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8.08, y: 2.35}
   m_EdgeRadius: 0
+--- !u!114 &7764913030918962530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7212551655898656872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4743723f3e93d14b84c28171faeb752, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
