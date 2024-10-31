@@ -13,14 +13,17 @@ public class ObsWater : MonoBehaviour
         {
             _obsController.IsOnWaterTop = true;
             _obsController.IsOnWaterDeep = false;
+            _obsController.IsOnGround = false;
         }
         if (waterDeep && _obsController.IsOnWaterTop == false)
         {
             _obsController.IsOnWaterDeep = true;
+            _obsController.IsOnGround = false;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
+        Ground ground = collision.gameObject.GetComponent<Ground>();
         WaterTop waterTop = collision.gameObject.GetComponent<WaterTop>();
         WaterDeep waterDeep = collision.gameObject.GetComponent<WaterDeep>();
         if (waterTop)
@@ -30,6 +33,10 @@ public class ObsWater : MonoBehaviour
         if (waterDeep)
         {
             _obsController.IsOnWaterDeep = false;
+        }
+        if (ground)
+        {
+            _obsController.IsOnGround = false;
         }
 
     }

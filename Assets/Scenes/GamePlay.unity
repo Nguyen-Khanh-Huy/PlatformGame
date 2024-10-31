@@ -140,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2758539319171115192, guid: c78751e92f687db4db585bdc8b06e1f8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.56
+      value: 0.47
       objectReference: {fileID: 0}
     - target: {fileID: 2758539319171115192, guid: c78751e92f687db4db585bdc8b06e1f8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -227,6 +227,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3612930459544987954, guid: 23d0e26985ca7d942b80927e056d1fc0, type: 3}
+      propertyPath: _anim
+      value: 
+      objectReference: {fileID: 970169994}
     - target: {fileID: 8172800769933031765, guid: 23d0e26985ca7d942b80927e056d1fc0, type: 3}
       propertyPath: m_Name
       value: Player
@@ -250,7 +254,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1711860214451493, guid: f10554acc755db94596864984d014f4c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.55
+      value: -0.564
       objectReference: {fileID: 0}
     - target: {fileID: 1711860214451493, guid: f10554acc755db94596864984d014f4c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -528,6 +532,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &970169994 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3321840860462125065, guid: 23d0e26985ca7d942b80927e056d1fc0, type: 3}
+  m_PrefabInstance: {fileID: 357421366}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1012029450
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -542,7 +551,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4715649951611661515, guid: a394ac750f849bf41a7dd0c65ac077d0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.66
+      value: 1.54
       objectReference: {fileID: 0}
     - target: {fileID: 4715649951611661515, guid: a394ac750f849bf41a7dd0c65ac077d0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -629,7 +638,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5c4a16672ef27e4d94b289704044aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joystick: {fileID: 0}
   jumpHoldingTime: 0
 --- !u!1001 &1943299588
 PrefabInstance:
@@ -645,7 +653,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 246586958733154555, guid: 8e0629ecebe62ae42b9cfc160a209b40, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.92
       objectReference: {fileID: 0}
     - target: {fileID: 246586958733154555, guid: 8e0629ecebe62ae42b9cfc160a209b40, type: 3}
       propertyPath: m_LocalPosition.z

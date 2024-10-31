@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GamePad : Singleton<GamePad>
 {
-    public Joystick joystick;
+    //public Joystick joystick; 
 
     public float jumpHoldingTime;
     private bool _canMoveLeft;

@@ -300,7 +300,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 2.3
-  m_Material: {fileID: 6200000, guid: 05ab9a46f8481c7409caf6048332a29d, type: 2}
+  m_Material: {fileID: 6200000, guid: 7b7cced9bd001fc4dad5cd461f66703f, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -428,15 +428,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d9a3a2e10017b64d82f7d7fa092f3be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Obs: {fileID: 8266176094734589909}
   _ani: {fileID: 3321840860462125065}
   _rb: {fileID: 7480764926833072574}
   _sp: {fileID: 2501424214659801983}
   _colDefaul: {fileID: 5974523064571170041}
   _colFly: {fileID: 1585437074361666029}
   _colWater: {fileID: 8981575243581604013}
+  _ColObsDefaul: {fileID: 4729950936820991712}
+  _ColObsWater: {fileID: 6159320534723749607}
   _speedCur: 0
   _jumpForce: 11
-  _speedMove: 3
+  _speedMove: 4
   _speedFly: 2
   _speedLadder: 2
   _speedSwim: 2
