@@ -19,10 +19,8 @@ public abstract class PlayerCtrl : MonoBehaviour
     [SerializeField] protected float _speedFly;
     [SerializeField] protected float _speedLadder;
     [SerializeField] protected float _speedSwim;
-    [SerializeField] protected Vector2 _moving;
-
-    protected float jumpFallMultipiler = 5f;
-    protected float jumpLowMultipiler = 5f;
+    [SerializeField] private bool _checkLandAndJump;
+    private int hoz, vert;
 
     [SerializeField] protected float _startGravity;
     [SerializeField] protected bool _isKnockBack;
@@ -35,11 +33,12 @@ public abstract class PlayerCtrl : MonoBehaviour
     }
     protected virtual void Update()
     {
-        //JumpCheck();
-        //LadderCheck();
+        JumpCheck();
+        FlyAndOnAirCheck();
+
         GroundCheck();
-        //FlyCheck();
-        //WaterCheck();
+        LadderCheck();
+        WaterCheck();
     }
     protected virtual void FixedUpdate()
     {
@@ -63,7 +62,7 @@ public abstract class PlayerCtrl : MonoBehaviour
         if (check)
         {
             _sp.flipX = true;
-            if(_colDefaul.offset.x < 0f && _colFly.offset.x > 0f && _colWater.offset.x > 0f)
+            if (_colDefaul.offset.x < 0f && _colFly.offset.x > 0f && _colWater.offset.x > 0f)
             {
                 _colDefaul.offset = new Vector2(-_colDefaul.offset.x, _colDefaul.offset.y);
                 _colFly.offset = new Vector2(-_colFly.offset.x, _colFly.offset.y);
@@ -83,67 +82,33 @@ public abstract class PlayerCtrl : MonoBehaviour
     }
     protected virtual void MoveFly()
     {
-        _rb.gravityScale = 0;
-        _moving.y = -_speedCur;
-        _rb.velocity = _moving;
-    }
-    protected virtual void MoveSwim()
-    {
-        if (GamePad.Ins.CanMoveLeft)
+        hoz = GamePad.Ins.CanMoveLeft ? -1 : GamePad.Ins.CanMoveRight ? 1 : 0;
+        if (hoz != 0)
         {
-            _moving.x = -_speedCur;
+            _rb.velocity = new Vector2(hoz * (_speedCur + 3), -_speedCur);
+            CheckFlip(hoz < 0);
         }
-        if (GamePad.Ins.CanMoveRight)
-        {
-            _moving.x = _speedCur;
-        }
-        if (GamePad.Ins.CanMoveUp)
-        {
-            _moving.y = _speedCur;
-        }
-        if (GamePad.Ins.CanMoveDown)
-        {
-            _moving.y = -_speedCur;
-        }
-        _rb.velocity = _moving;
-    }
-    protected virtual void MoveHoz()
-    {
-        if (GamePad.Ins.CanMoveLeft)
-        {
-            _moving.x = -_speedCur;
-            CheckFlip(true);
-        }
-        if (GamePad.Ins.CanMoveRight)
-        {
-            _moving.x = _speedCur;
-            CheckFlip(false);
-        }
-        _rb.velocity = _moving;
-    }
-    protected virtual void MoveFull()
-    {
-        if (GamePad.Ins.CanMoveLeft)
-        {
-            _rb.velocity = new Vector2(-_speedCur, _rb.velocity.y);
-            CheckFlip(true);
-        }
-        if (GamePad.Ins.CanMoveRight)
-        {
-            _rb.velocity = new Vector2(_speedCur, _rb.velocity.y);
-            CheckFlip(false);
-        }
-        if (GamePad.Ins.CanMoveUp)
-        {
-            _rb.velocity = new Vector2(_rb.velocity.x, _speedCur);
-        }
-        if (GamePad.Ins.CanMoveDown)
+        else
         {
             _rb.velocity = new Vector2(_rb.velocity.x, -_speedCur);
         }
-        if (GamePad.Ins.CanJump)
+    }
+    protected virtual void MoveFull()
+    {
+        hoz = GamePad.Ins.CanMoveLeft ? -1 : GamePad.Ins.CanMoveRight ? 1 : 0;
+        vert = GamePad.Ins.CanMoveDown ? -1 : GamePad.Ins.CanMoveUp ? 1 : 0;
+        if (hoz != 0)
         {
-            _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
+            _rb.velocity = new Vector2(hoz * _speedCur, _rb.velocity.y);
+            CheckFlip(hoz < 0);
+        }
+        if (vert != 0)
+        {
+            _rb.velocity = new Vector2(_rb.velocity.x, vert * _speedCur);
+        }
+        else if (hoz != 0 && Obs.IsOnWaterDeep)
+        {
+            _rb.velocity = new Vector2(_rb.velocity.x, 0);
         }
     }
     protected virtual void JumpCheck()
@@ -157,19 +122,13 @@ public abstract class PlayerCtrl : MonoBehaviour
     {
         if (_rb.velocity.y < 0)
         {
-            _rb.velocity += Vector2.up * Physics2D.gravity.y * (jumpFallMultipiler - 1) * Time.deltaTime;
+            _rb.velocity += Vector2.up * Physics2D.gravity.y * 4f * Time.deltaTime;
         }
         else if (_rb.velocity.y > 0 && !GamePad.Ins.CanJumpHolding)
         {
-            _rb.velocity += Vector2.up * Physics2D.gravity.y * (jumpLowMultipiler - 1) * Time.deltaTime;
+            _rb.velocity += Vector2.up * Physics2D.gravity.y * 4f * Time.deltaTime;
         }
     }
-    private IEnumerator DelayIdle()
-    {
-        yield return new WaitForSeconds(0.08f);
-        ChangeState(PlayerState.Idle);
-    }
-    private bool _checkLand;
     protected virtual void GroundCheck()
     {
         if (Obs.IsOnGround)
@@ -180,63 +139,96 @@ public abstract class PlayerCtrl : MonoBehaviour
             GamePad.Ins.CanFly = false;
             ActiveCol(_colDefaul);
             MoveFull();
-            if (GamePad.Ins.IsStatic)
+            if (GamePad.Ins.CanAttack)
             {
-                if (!_checkLand)
-                {
-                    ChangeState(PlayerState.Land);
-                }
-                _checkLand = true;
-                StartCoroutine(DelayIdle());
+                ChangeState(PlayerState.Attack);
+            }
+            else if (GamePad.Ins.CanBullet)
+            {
+                ChangeState(PlayerState.Bullet);
+            }
+            else if (!_checkLandAndJump)
+            {
+                GamePad.Ins.CanJumpHolding = false;
+                ChangeState(PlayerState.Land);
+                _checkLandAndJump = true;
+            }
+            else if (GamePad.Ins.IsStatic)
+            {
+                ChangeState(PlayerState.Idle);
                 _rb.velocity = Vector2.zero;
             }
             else if (GamePad.Ins.CanMoveLeft || GamePad.Ins.CanMoveRight)
             {
+                _checkLandAndJump = true;
                 ChangeState(PlayerState.Walk);
             }
         }
-    }
-    protected virtual void FlyCheck()
-    {
-        if(GamePad.Ins.CanFly)
-        {
-            if (!Obs.IsOnGround && !Obs.IsOnLadder && !Obs.IsOnWaterSurface && !Obs.IsOnWaterDeep && _rb.velocity.y < 0f)
-            {
-                _speedCur = _speedFly;
-                ChangeState(PlayerState.Fly);
-                ActiveCol(_colFly);
-                MoveFly();
-            }
-        }
+        else { _checkLandAndJump = false; }
     }
     protected virtual void LadderCheck()
     {
         if (Obs.IsOnLadder)
         {
             GamePad.Ins.CanFly = false;
+            GamePad.Ins.CanJump = false;
+            GamePad.Ins.CanJumpHolding = false;
             _speedCur = _speedLadder;
             ActiveCol(_colDefaul);
             _rb.gravityScale = 0;
             _rb.velocity = Vector2.zero;
-            if (GamePad.Ins.IsStatic)
+            if (GamePad.Ins.CanBullet)
+            {
+                ChangeState(PlayerState.Bullet);
+            }
+            else if (GamePad.Ins.IsStatic)
             {
                 ChangeState(PlayerState.LadderIdle);
             }
-            if (GamePad.Ins.CanMoveLeft || GamePad.Ins.CanMoveRight || GamePad.Ins.CanMoveUp || GamePad.Ins.CanMoveDown)
+            else if (GamePad.Ins.CanMoveLeft || GamePad.Ins.CanMoveRight || GamePad.Ins.CanMoveUp || GamePad.Ins.CanMoveDown)
             {
                 MoveFull();
                 ChangeState(PlayerState.Ladder);
             }
         }
-        if (!Obs.IsOnLadder && !Obs.IsOnWaterSurface && !Obs.IsOnWaterDeep)
+    }
+    protected virtual void FlyAndOnAirCheck()
+    {
+        if (!Obs.IsOnLadder && !Obs.IsOnGround && !Obs.IsOnWaterSurface && !Obs.IsOnWaterDeep)
         {
-            _speedCur = _speedMove;
-            _rb.gravityScale = _startGravity;
-            if (!GamePad.Ins.CanFly && !Obs.IsOnLadder && !Obs.IsOnGround && !Obs.IsOnWaterSurface && !Obs.IsOnWaterDeep)
+            GamePad.Ins.CanMoveUp = false;
+            GamePad.Ins.CanMoveDown = false;
+            if (GamePad.Ins.CanAttack)
             {
-                MoveHoz();
+                ChangeState(PlayerState.Attack);
+            }
+            else if (GamePad.Ins.CanBullet)
+            {
+                ChangeState(PlayerState.Bullet);
+            }
+            else if (!GamePad.Ins.CanFly && _rb.velocity.y > 0f || GamePad.Ins.CanFly && _rb.velocity.y > 0f)
+            {
+                ChangeState(PlayerState.Jump);
+                ActiveCol(_colDefaul);
+                MoveFull();
+                _speedCur = _speedMove;
+                _rb.gravityScale = _startGravity;
+            }
+            else if (!GamePad.Ins.CanFly && _rb.velocity.y <= 0f)
+            {
                 ChangeState(PlayerState.OnAir);
                 ActiveCol(_colDefaul);
+                MoveFull();
+                _speedCur = _speedMove;
+                _rb.gravityScale = _startGravity;
+            }
+            else if (GamePad.Ins.CanFly && _rb.velocity.y <= 0f)
+            {
+                ChangeState(PlayerState.Fly);
+                ActiveCol(_colFly);
+                MoveFly();
+                _speedCur = _speedFly;
+                _rb.gravityScale = 0;
             }
         }
     }
@@ -248,15 +240,15 @@ public abstract class PlayerCtrl : MonoBehaviour
             _rb.gravityScale = 0;
             ChangeState(PlayerState.SwimTop);
             ActiveCol(_colWater);
+            GamePad.Ins.CanFly = false;
             GamePad.Ins.CanMoveUp = false;
             if (GamePad.Ins.CanMoveLeft || GamePad.Ins.CanMoveRight || GamePad.Ins.CanMoveDown)
             {
-                MoveSwim();
+                MoveFull();
             }
-            else if(GamePad.Ins.IsStatic)
-            { _rb.velocity = Vector2.zero; }
+            else if (GamePad.Ins.IsStatic) { _rb.velocity = Vector2.zero; }
         }
-        if (Obs.IsOnWaterDeep)
+        else if (Obs.IsOnWaterDeep)
         {
             _speedCur = _speedSwim;
             _rb.gravityScale = 0;
@@ -266,7 +258,7 @@ public abstract class PlayerCtrl : MonoBehaviour
             GamePad.Ins.CanJump = false;
             if (GamePad.Ins.CanMoveLeft || GamePad.Ins.CanMoveRight || GamePad.Ins.CanMoveUp || GamePad.Ins.CanMoveDown)
             {
-                MoveSwim();
+                MoveFull();
             }
             else { _rb.velocity = Vector2.zero; }
         }

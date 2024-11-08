@@ -61,12 +61,12 @@ public class Obstacle : MonoBehaviour
         Collider2D Col = Physics2D.OverlapCircle(transform.position + _offsetWater, 0.1f, layerCheck);
         return Col != null;
     }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawSphere(transform.position + _offsetDefaul, 0.1f);
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.green;
+    //    Gizmos.DrawSphere(transform.position + _offsetDefaul, 0.1f);
         
-        Gizmos.color = Color.green;
-        Gizmos.DrawSphere(transform.position + _offsetWater, 0.1f);
-    }
+    //    Gizmos.color = Color.green;
+    //    Gizmos.DrawSphere(transform.position + _offsetWater, 0.1f);
+    //}
 }
