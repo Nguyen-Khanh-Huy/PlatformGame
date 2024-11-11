@@ -3458,7 +3458,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SwimTop
+  m_Name: SwimSurface
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -3992,7 +3992,7 @@ AnimatorStateMachine:
     m_Position: {x: 660, y: -300, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6241807380592813401}
-    m_Position: {x: 210, y: -360, z: 0}
+    m_Position: {x: 660, y: -230, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -431106184287934192}
     m_Position: {x: 660, y: -370, z: 0}

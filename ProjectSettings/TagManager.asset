@@ -15,9 +15,9 @@ TagManager:
   - Ladder
   - WaterSurface
   - WaterDeep
+  - Player
   - Enemy
-  - 
-  - 
+  - Dead
   - 
   - 
   - 

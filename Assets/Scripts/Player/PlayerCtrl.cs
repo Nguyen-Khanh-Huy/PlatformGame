@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class PlayerCtrl : MonoBehaviour
 {
-    [SerializeField] protected Obstacle Obs;
+    [SerializeField] protected PlayerObstacle Obs;
     [SerializeField] protected Animator _anim;
     [SerializeField] protected Rigidbody2D _rb;
     [SerializeField] protected SpriteRenderer _sp;
@@ -13,23 +13,19 @@ public abstract class PlayerCtrl : MonoBehaviour
     [SerializeField] protected CapsuleCollider2D _colFly;
     [SerializeField] protected CapsuleCollider2D _colWater;
 
-    [SerializeField] protected float _speedCur;
-    [SerializeField] protected float _jumpForce;
-    [SerializeField] protected float _speedMove;
-    [SerializeField] protected float _speedFly;
-    [SerializeField] protected float _speedLadder;
-    [SerializeField] protected float _speedSwim;
-    [SerializeField] private bool _checkLandAndJump;
-    private int hoz, vert;
+    [SerializeField] protected PlayerSO _playerSO;
 
+    [SerializeField] protected float _speedCur;
     [SerializeField] protected float _startGravity;
-    [SerializeField] protected bool _isKnockBack;
-    [SerializeField] protected bool _isInvincible;
+    [SerializeField] protected bool _isDead;
+
+    private bool _checkLandAndJump;
+    private int hoz, vert;
 
     protected virtual void Start()
     {
         _startGravity = _rb.gravityScale;
-        _speedCur = _speedMove;
+        _speedCur = _playerSO.SpeedMove;
     }
     protected virtual void Update()
     {
@@ -113,9 +109,9 @@ public abstract class PlayerCtrl : MonoBehaviour
     }
     protected virtual void JumpCheck()
     {
-        if (GamePad.Ins.CanJump && (Obs.IsOnGround || Obs.IsOnWaterSurface))
+        if (GamePad.Ins.CanJump && (Obs.IsOnGround || Obs.IsMovingPlatform || Obs.IsOnWaterSurface))
         {
-            _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
+            _rb.velocity = new Vector2(_rb.velocity.x, _playerSO.JumpForce);
         }
     }
     protected virtual void SmoothJump()
@@ -133,7 +129,7 @@ public abstract class PlayerCtrl : MonoBehaviour
     {
         if (Obs.IsOnGround)
         {
-            _speedCur = _speedMove;
+            _speedCur = _playerSO.SpeedMove;
             GamePad.Ins.CanMoveUp = false;
             GamePad.Ins.CanMoveDown = false;
             GamePad.Ins.CanFly = false;
@@ -173,7 +169,7 @@ public abstract class PlayerCtrl : MonoBehaviour
             GamePad.Ins.CanFly = false;
             GamePad.Ins.CanJump = false;
             GamePad.Ins.CanJumpHolding = false;
-            _speedCur = _speedLadder;
+            _speedCur = _playerSO.SpeedLadder;
             ActiveCol(_colDefaul);
             _rb.gravityScale = 0;
             _rb.velocity = Vector2.zero;
@@ -211,7 +207,7 @@ public abstract class PlayerCtrl : MonoBehaviour
                 ChangeState(PlayerState.Jump);
                 ActiveCol(_colDefaul);
                 MoveFull();
-                _speedCur = _speedMove;
+                _speedCur = _playerSO.SpeedMove;
                 _rb.gravityScale = _startGravity;
             }
             else if (!GamePad.Ins.CanFly && _rb.velocity.y <= 0f)
@@ -219,7 +215,7 @@ public abstract class PlayerCtrl : MonoBehaviour
                 ChangeState(PlayerState.OnAir);
                 ActiveCol(_colDefaul);
                 MoveFull();
-                _speedCur = _speedMove;
+                _speedCur = _playerSO.SpeedMove;
                 _rb.gravityScale = _startGravity;
             }
             else if (GamePad.Ins.CanFly && _rb.velocity.y <= 0f)
@@ -227,7 +223,7 @@ public abstract class PlayerCtrl : MonoBehaviour
                 ChangeState(PlayerState.Fly);
                 ActiveCol(_colFly);
                 MoveFly();
-                _speedCur = _speedFly;
+                _speedCur = _playerSO.SpeedFly;
                 _rb.gravityScale = 0;
             }
         }
@@ -236,9 +232,9 @@ public abstract class PlayerCtrl : MonoBehaviour
     {
         if (Obs.IsOnWaterSurface)
         {
-            _speedCur = _speedSwim;
+            _speedCur = _playerSO.SpeedSwim;
             _rb.gravityScale = 0;
-            ChangeState(PlayerState.SwimTop);
+            ChangeState(PlayerState.SwimSurface);
             ActiveCol(_colWater);
             GamePad.Ins.CanFly = false;
             GamePad.Ins.CanMoveUp = false;
@@ -250,7 +246,7 @@ public abstract class PlayerCtrl : MonoBehaviour
         }
         else if (Obs.IsOnWaterDeep)
         {
-            _speedCur = _speedSwim;
+            _speedCur = _playerSO.SpeedSwim;
             _rb.gravityScale = 0;
             ChangeState(PlayerState.SwimDeep);
             ActiveCol(_colWater);
@@ -262,5 +258,25 @@ public abstract class PlayerCtrl : MonoBehaviour
             }
             else { _rb.velocity = Vector2.zero; }
         }
+    }
+    public virtual void TakeDamagePlayer(int dmg)
+    {
+        if (_isDead) return;
+        if (_playerSO.Hp > 0)
+        {
+            _playerSO.Hp -= dmg;
+            if (_playerSO.Hp <= 0)
+            {
+                _playerSO.Hp = 0;
+                _isDead = true;
+                Death();
+            }
+        }
+    }
+    protected virtual void Death()
+    {
+        gameObject.layer = LayerMask.NameToLayer("Dead");
+        _rb.velocity = Vector2.zero;
+        ChangeState(PlayerState.Dead);
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Action : MonoBehaviour
+public class PlayerHammer : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _sp;
     [SerializeField] private Vector3 _offset;
@@ -27,12 +27,12 @@ public class Action : MonoBehaviour
             }
         }
     }
-    private void Attack()
+    private void HammerAttack()
     {
         Collider2D col = Physics2D.OverlapCircle(transform.position + _offset, 0.6f, LayerMask.GetMask("Enemy"));
         if(col != null)
         {
-            Debug.Log("Tacke Dame Enemy");
+            Debug.Log("Take Dame Enemy");
         }
     }
     //private void OnDrawGizmos()

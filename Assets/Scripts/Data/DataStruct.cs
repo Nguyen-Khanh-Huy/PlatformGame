@@ -14,7 +14,7 @@ public enum PlayerState
     Fly,
     OnAir,
     Land,
-    SwimTop,
+    SwimSurface,
     SwimDeep,
     Dead,
     SayHello
