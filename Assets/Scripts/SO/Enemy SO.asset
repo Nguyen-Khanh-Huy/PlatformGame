@@ -16,3 +16,4 @@ MonoBehaviour:
   Damage: 1
   SpeedMove: 2
   SpeedChasing: 4
+  MovingDist: 3

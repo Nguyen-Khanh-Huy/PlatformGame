@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 6182406649749187003}
   - component: {fileID: 773258569322080058}
   - component: {fileID: 2150452700039199412}
-  m_Layer: 0
+  - component: {fileID: 5891103855119597356}
+  - component: {fileID: 1990180296508053400}
+  m_Layer: 11
   m_Name: Fish_Horizontal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,6 +98,69 @@ CapsuleCollider2D:
   m_Offset: {x: 0.19444813, y: -0.020072367}
   m_Size: {x: 1.3889086, y: 1.0401585}
   m_Direction: 1
+--- !u!70 &5891103855119597356
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8526255779533105222}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 8, y: 0.5}
+  m_Direction: 1
+--- !u!114 &1990180296508053400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8526255779533105222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c79a69fa2650584b84a25bb33d2828e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _anim: {fileID: 4258537480443830747}
+  _sp: {fileID: 5892664961489177759}
+  _rb: {fileID: 773258569322080058}
+  _col: {fileID: 2150452700039199412}
+  _player: {fileID: 3612930459544987954, guid: 23d0e26985ca7d942b80927e056d1fc0, type: 3}
+  _enemySO: {fileID: 11400000, guid: 0999ef4c2b66c1946b54a4a11b72e091, type: 2}
+  _speedCur: 0
+  _startPosition: {x: 0, y: 0, z: 0}
+  _target: {x: 0, y: 0, z: 0}
+  _direction: {x: 0, y: 0, z: 0}
+  _enemyDir: 0
+  _posXLeft: {x: 0, y: 0, z: 0}
+  _posXRight: {x: 0, y: 0, z: 0}
+  _posYUp: {x: 0, y: 0, z: 0}
+  _posYDown: {x: 0, y: 0, z: 0}
+  _noTarger: 0
 --- !u!1 &8911598730517229567
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +172,7 @@ GameObject:
   - component: {fileID: 6784272802295673765}
   - component: {fileID: 5892664961489177759}
   - component: {fileID: 4258537480443830747}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

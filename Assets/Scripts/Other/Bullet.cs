@@ -10,4 +10,22 @@ public class Bullet : MonoBehaviour
     {
         transform.position += transform.right * DirBullet * _speedBullet * Time.deltaTime;
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            Debug.Log("Take Dame Enemy");
+        }
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            Debug.Log("Take Dame Enemy");
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        
+    }
 }

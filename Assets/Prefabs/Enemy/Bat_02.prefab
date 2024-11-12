@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3368794971506467011}
   - component: {fileID: 8222919367276799399}
   - component: {fileID: 5995318431239667972}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 6055843932449892398}
   - component: {fileID: 4722384613914371709}
   - component: {fileID: -577994950587276387}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bat_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}

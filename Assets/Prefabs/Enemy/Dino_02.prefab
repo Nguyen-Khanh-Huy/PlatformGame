@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 1225641226430237131}
   - component: {fileID: -7999386439921197341}
   - component: {fileID: -566817924235888077}
-  m_Layer: 0
+  - component: {fileID: -531957765308157308}
+  - component: {fileID: 2999324040757526196}
+  m_Layer: 11
   m_Name: Dino_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,6 +98,69 @@ CapsuleCollider2D:
   m_Offset: {x: 0.22072136, y: -0.06400868}
   m_Size: {x: 1.3437004, y: 2.1164474}
   m_Direction: 0
+--- !u!70 &-531957765308157308
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645177850188753709}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 8, y: 0.5}
+  m_Direction: 1
+--- !u!114 &2999324040757526196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645177850188753709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c79a69fa2650584b84a25bb33d2828e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _anim: {fileID: 150120202055996918}
+  _sp: {fileID: 106119159619819945}
+  _rb: {fileID: -7999386439921197341}
+  _col: {fileID: -566817924235888077}
+  _player: {fileID: 3612930459544987954, guid: 23d0e26985ca7d942b80927e056d1fc0, type: 3}
+  _enemySO: {fileID: 11400000, guid: 0999ef4c2b66c1946b54a4a11b72e091, type: 2}
+  _speedCur: 0
+  _startPosition: {x: 0, y: 0, z: 0}
+  _target: {x: 0, y: 0, z: 0}
+  _direction: {x: 0, y: 0, z: 0}
+  _enemyDir: 2
+  _posXLeft: {x: 0, y: 0, z: 0}
+  _posXRight: {x: 0, y: 0, z: 0}
+  _posYUp: {x: 0, y: 0, z: 0}
+  _posYDown: {x: 0, y: 0, z: 0}
+  _noTarger: 0
 --- !u!1 &730065699354025608
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +172,7 @@ GameObject:
   - component: {fileID: 3738437867830522441}
   - component: {fileID: 106119159619819945}
   - component: {fileID: 150120202055996918}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

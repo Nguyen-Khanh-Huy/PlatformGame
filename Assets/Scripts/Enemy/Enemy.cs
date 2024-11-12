@@ -4,18 +4,18 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    protected Animator _anim;
-    protected SpriteRenderer _sp;
-    protected Rigidbody2D _rb;
-    
-    protected EnemySO _enemySO;
+    [SerializeField] protected Animator _anim;
+    [SerializeField] protected SpriteRenderer _sp;
+    [SerializeField] protected Rigidbody2D _rb;
+    [SerializeField] protected CapsuleCollider2D _col;
+    [SerializeField] protected Player _player;
+    [SerializeField] protected EnemySO _enemySO;
 
-    protected float _speedCur;
-    protected float _movingDist;
+    [SerializeField] protected float _speedCur;
 
-    protected Vector3 _startPosition;
-    protected Vector3 _target;
-    protected Vector3 _direction;
+    [SerializeField] protected Vector3 _startPosition;
+    [SerializeField] protected Vector3 _target;
+    [SerializeField] protected Vector3 _direction;
 
     protected virtual void Start()
     {
@@ -29,6 +29,23 @@ public abstract class Enemy : MonoBehaviour
 
     protected abstract void Move();
 
+    protected virtual void ChangeState(EnemyState State)
+    {
+        _anim.SetInteger("State", (int)State);
+    }
+    protected void CheckFlip(bool check)
+    {
+        if (check)
+        {
+            _sp.flipX = true;
+            _col.offset = _col.offset.x > 0f ? new Vector2(-_col.offset.x, _col.offset.y) : _col.offset;
+        }
+        else
+        {
+            _sp.flipX = false;
+            _col.offset = _col.offset.x < 0f ? new Vector2(-_col.offset.x, _col.offset.y) : _col.offset;
+        }
+    }
     public virtual void TakeDamageEnemy(int dmg)
     {
         if (gameObject.layer == LayerMask.NameToLayer("Dead")) return;

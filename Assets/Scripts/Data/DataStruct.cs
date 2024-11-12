@@ -19,3 +19,15 @@ public enum PlayerState
     Dead,
     SayHello
 }
+public enum EnemyState
+{
+    Moving,
+    Chasing
+}
+public enum EnemyDir
+{
+    Up,
+    Down,
+    Left,
+    Right
+}

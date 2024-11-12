@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6182406649749187003}
   - component: {fileID: 773258569322080058}
   - component: {fileID: 2150452700039199412}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Fish_Free
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 6784272802295673765}
   - component: {fileID: 5892664961489177759}
   - component: {fileID: 4258537480443830747}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
