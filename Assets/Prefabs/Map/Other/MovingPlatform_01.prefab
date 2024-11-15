@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 8245235211635407232}
   - component: {fileID: -1588011687987937106}
   - component: {fileID: -3942757034522051632}
+  - component: {fileID: 9219338058807801177}
   m_Layer: 6
   m_Name: MovingPlatform_01
   m_TagString: Untagged
@@ -269,3 +270,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c445e0528bb1fff45a44c7ff1cc15b0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9219338058807801177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226105230720115675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c79a69fa2650584b84a25bb33d2828e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _anim: {fileID: 0}
+  _sp: {fileID: 0}
+  _rb: {fileID: -7083023678435165610}
+  _col: {fileID: 0}
+  _player: {fileID: 3612930459544987954, guid: 23d0e26985ca7d942b80927e056d1fc0, type: 3}
+  _enemySO: {fileID: 11400000, guid: 0999ef4c2b66c1946b54a4a11b72e091, type: 2}
+  _speedCur: 0
+  _startPosition: {x: 0, y: 0, z: 0}
+  _target: {x: 0, y: 0, z: 0}
+  _direction: {x: 0, y: 0, z: 0}
+  _enemyDir: 2
+  _posXLeft: {x: 0, y: 0, z: 0}
+  _posXRight: {x: 0, y: 0, z: 0}
+  _posYUp: {x: 0, y: 0, z: 0}
+  _posYDown: {x: 0, y: 0, z: 0}
+  _noTarger: 1

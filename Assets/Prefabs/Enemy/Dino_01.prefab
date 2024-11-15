@@ -237,7 +237,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 8, y: 0.5}
+  m_Size: {x: 6, y: 0.5}
   m_Direction: 1
 --- !u!114 &264889461395038330
 MonoBehaviour:
@@ -258,12 +258,8 @@ MonoBehaviour:
   _player: {fileID: 3612930459544987954, guid: 23d0e26985ca7d942b80927e056d1fc0, type: 3}
   _enemySO: {fileID: 11400000, guid: 0999ef4c2b66c1946b54a4a11b72e091, type: 2}
   _speedCur: 0
-  _startPosition: {x: 0, y: 0, z: 0}
+  _speedMove: 1.5
+  _movingDist: 5
   _target: {x: 0, y: 0, z: 0}
-  _direction: {x: 0, y: 0, z: 0}
   _enemyDir: 2
-  _posXLeft: {x: 0, y: 0, z: 0}
-  _posXRight: {x: 0, y: 0, z: 0}
-  _posYUp: {x: 0, y: 0, z: 0}
-  _posYDown: {x: 0, y: 0, z: 0}
   _noTarger: 0

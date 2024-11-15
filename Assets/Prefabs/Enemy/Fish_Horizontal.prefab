@@ -152,14 +152,10 @@ MonoBehaviour:
   _player: {fileID: 3612930459544987954, guid: 23d0e26985ca7d942b80927e056d1fc0, type: 3}
   _enemySO: {fileID: 11400000, guid: 0999ef4c2b66c1946b54a4a11b72e091, type: 2}
   _speedCur: 0
-  _startPosition: {x: 0, y: 0, z: 0}
+  _speedMove: 1.5
+  _movingDist: 5
   _target: {x: 0, y: 0, z: 0}
-  _direction: {x: 0, y: 0, z: 0}
-  _enemyDir: 0
-  _posXLeft: {x: 0, y: 0, z: 0}
-  _posXRight: {x: 0, y: 0, z: 0}
-  _posYUp: {x: 0, y: 0, z: 0}
-  _posYDown: {x: 0, y: 0, z: 0}
+  _enemyDir: 2
   _noTarger: 0
 --- !u!1 &8911598730517229567
 GameObject:

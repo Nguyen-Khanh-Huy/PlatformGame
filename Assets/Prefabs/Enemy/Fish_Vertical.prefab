@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 8455212073518307696}
   - component: {fileID: -8131859197338535907}
   - component: {fileID: -1689795649079012113}
+  - component: {fileID: 4215805127669356020}
   m_Layer: 11
   m_Name: Fish_Vertical
   m_TagString: Untagged
@@ -202,3 +203,27 @@ CapsuleCollider2D:
   m_Offset: {x: 0.019866824, y: 0.15769374}
   m_Size: {x: 1.1456752, y: 1.320354}
   m_Direction: 0
+--- !u!114 &4215805127669356020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8118729860466240143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c79a69fa2650584b84a25bb33d2828e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _anim: {fileID: 0}
+  _sp: {fileID: 5001982772642360343}
+  _rb: {fileID: -8131859197338535907}
+  _col: {fileID: -1689795649079012113}
+  _player: {fileID: 3612930459544987954, guid: 23d0e26985ca7d942b80927e056d1fc0, type: 3}
+  _enemySO: {fileID: 11400000, guid: 0999ef4c2b66c1946b54a4a11b72e091, type: 2}
+  _speedCur: 0
+  _speedMove: 5
+  _movingDist: 3
+  _target: {x: 0, y: 0, z: 0}
+  _enemyDir: 0
+  _noTarger: 1

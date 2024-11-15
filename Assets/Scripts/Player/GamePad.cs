@@ -6,7 +6,7 @@ public class GamePad : Singleton<GamePad>
 {
     //public Joystick joystick; 
 
-    public float jumpHoldingTime;
+    //public float jumpHoldingTime;
     private bool _canMoveLeft;
     private bool _canMoveRight;
     private bool _canMoveUp;
@@ -18,7 +18,7 @@ public class GamePad : Singleton<GamePad>
     private bool _canAttack;
 
     private bool _checkJumpHolding;
-    private float _curHoldingTime;
+    //private float _curHoldingTime;
 
     public bool CanMoveLeft { get => _canMoveLeft; set => _canMoveLeft = value; }
     public bool CanMoveRight { get => _canMoveRight; set => _canMoveRight = value; }
@@ -57,15 +57,16 @@ public class GamePad : Singleton<GamePad>
         {
             _canJumpHolding = false;
             _checkJumpHolding = true;
-            _curHoldingTime = 0;
+            //_curHoldingTime = 0;
         }
         if (_checkJumpHolding)
         {
-            _curHoldingTime += Time.deltaTime;
-            if (_curHoldingTime > jumpHoldingTime)
-            {
-                _canJumpHolding = Input.GetKey(KeyCode.Space);
-            }
+            //_curHoldingTime += Time.deltaTime;
+            //if (_curHoldingTime > jumpHoldingTime)
+            //{
+            //    _canJumpHolding = Input.GetKey(KeyCode.Space);
+            //}
+            _canJumpHolding = Input.GetKey(KeyCode.Space);
         }
 
         //if (joystick == null) return;
@@ -73,6 +74,5 @@ public class GamePad : Singleton<GamePad>
         //_canMoveRight = joystick.xValue > 0 ? true : false;
         //_canMoveUp = joystick.yValue > 0 ? true : false;
         //_canMoveDown = joystick.yValue < 0 ? true : false;
-
     }
 }

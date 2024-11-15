@@ -5,15 +5,21 @@ using UnityEngine;
 public class EnemyMovingLine : Enemy
 {
     [SerializeField] private EnemyDir _enemyDir;
-    [SerializeField] private Vector3 _posXLeft;
-    [SerializeField] private Vector3 _posXRight;
-    [SerializeField] private Vector3 _posYUp;
-    [SerializeField] private Vector3 _posYDown;
+    private Vector3 _posXLeft;
+    private Vector3 _posXRight;
+    private Vector3 _posYUp;
+    private Vector3 _posYDown;
+    private float _timeCheckCol = 0f;
     [SerializeField] private bool _noTarger;
     protected override void Start()
     {
         base.Start();
         DirStart();
+    }
+    protected override void Update()
+    {
+        if (_noTarger) return;
+        _timeCheckCol += Time.deltaTime;
     }
     protected override void Move()
     {
@@ -25,23 +31,30 @@ public class EnemyMovingLine : Enemy
         else
         {
             ChangeState(EnemyState.Moving);
-            _speedCur = _enemySO.SpeedMove;
+            _speedCur = _speedMove;
             _target = Vector3.Distance(transform.position, _posXLeft) < 0.5f ? _posXRight : Vector3.Distance(transform.position, _posXRight) < 0.5f ? _posXLeft : _target;
             _target = Vector3.Distance(transform.position, _posYUp) < 0.5f ? _posYDown : Vector3.Distance(transform.position, _posYDown) < 0.5f ? _posYUp : _target;
         }
         _direction = _target - transform.position;
         _direction.Normalize();
-        _rb.velocity = _direction * _speedCur;
+        if (GetComponent<MovingPlatform>() != null)
+        {
+            transform.position += _direction * _speedCur * Time.deltaTime;
+        }
+        else { _rb.velocity = _direction * _speedCur; }
 
-        if (_rb.velocity.x > 0f) { CheckFlip(false); }
-        else { CheckFlip(true); }
+        CheckFlipX(_rb.velocity.x < 0f);
+        if (gameObject.name == "Fish_Vertical")
+        {
+            CheckFlipY(_rb.velocity.y < 0f);
+        }
     }
     private void DirStart()
     {
-        _posYUp = new Vector3(transform.position.x, _startPosition.y + _enemySO.MovingDist, transform.position.z);
-        _posYDown = new Vector3(transform.position.x, _startPosition.y - _enemySO.MovingDist, transform.position.z);
-        _posXRight = new Vector3(_startPosition.x + _enemySO.MovingDist, transform.position.y, transform.position.z);
-        _posXLeft = new Vector3(_startPosition.x - _enemySO.MovingDist, transform.position.y, transform.position.z);
+        _posYUp = new Vector3(transform.position.x, _startPosition.y + _movingDist, transform.position.z);
+        _posYDown = new Vector3(transform.position.x, _startPosition.y - _movingDist, transform.position.z);
+        _posXRight = new Vector3(_startPosition.x + _movingDist, transform.position.y, transform.position.z);
+        _posXLeft = new Vector3(_startPosition.x - _movingDist, transform.position.y, transform.position.z);
 
         switch (_enemyDir)
         {
@@ -59,24 +72,12 @@ public class EnemyMovingLine : Enemy
                 break;
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (_noTarger) return;
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            _target = collision.transform.position;
-            if (Vector3.Distance(transform.position, collision.transform.position) <= 1f)
-            {
-                Debug.Log("zz");
-                if (_rb.velocity.x < 0f)
-                {
-                    _rb.AddForce(Vector3.right * 10f, ForceMode2D.Impulse);
-                }
-                else
-                {
-                    _rb.AddForce(Vector3.left * -10f, ForceMode2D.Impulse);
-                }
-            }
+            _timeCheckCol = 0f;
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -84,19 +85,11 @@ public class EnemyMovingLine : Enemy
         if (_noTarger) return;
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            _target = collision.transform.position;
-            if (Vector3.Distance(transform.position, collision.transform.position) <= 1f)
+            if (_timeCheckCol < 0.5f)
             {
-                Debug.Log("zz");
-                if (_rb.velocity.x < 0f)
-                {
-                    _rb.AddForce(Vector3.right * 10f, ForceMode2D.Impulse);
-                }
-                else
-                {
-                    _rb.AddForce(Vector3.left * -10f, ForceMode2D.Impulse);
-                }
+                _target = Vector3.Distance(collision.transform.position, _posXLeft) < Vector3.Distance(transform.position, _posXLeft) ? _posXRight : _posXLeft;
             }
+            else { _target = collision.transform.position; }
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -106,19 +99,11 @@ public class EnemyMovingLine : Enemy
         {
             if (_enemyDir == EnemyDir.Left || _enemyDir == EnemyDir.Right)
             {
-                if (Vector3.Distance(transform.position, _posXRight) > Vector3.Distance(transform.position, _posXLeft))
-                {
-                    _target = _posXLeft;
-                }
-                else { _target = _posXRight; }
+                _target = Vector3.Distance(collision.transform.position, _posXLeft) < Vector3.Distance(transform.position, _posXLeft) ? _posXRight : _posXLeft;
             }
             else
             {
-                if (Vector3.Distance(transform.position, _posYUp) > Vector3.Distance(transform.position, _posYDown))
-                {
-                    _target = _posYDown;
-                }
-                else { _target = _posYUp; }
+                _target = Vector3.Distance(transform.position, _posYUp) < Vector3.Distance(transform.position, _posYDown) ? _posYDown : _posYUp;
             }
         }
     }

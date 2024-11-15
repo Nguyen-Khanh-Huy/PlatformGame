@@ -10,9 +10,5 @@ public class EnemySO : ScriptableObject
     public int Damage;
 
     [Header("Moving:")]
-    public float SpeedMove;
     public float SpeedChasing;
-
-    [Header("Distance:")]
-    public float MovingDist;
 }

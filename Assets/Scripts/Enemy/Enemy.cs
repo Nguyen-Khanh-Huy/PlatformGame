@@ -12,15 +12,21 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected EnemySO _enemySO;
 
     [SerializeField] protected float _speedCur;
+    [SerializeField] protected float _speedMove;
+    [SerializeField] protected float _movingDist;
 
-    [SerializeField] protected Vector3 _startPosition;
     [SerializeField] protected Vector3 _target;
-    [SerializeField] protected Vector3 _direction;
+    protected Vector3 _startPosition;
+    protected Vector3 _direction;
 
     protected virtual void Start()
     {
         _startPosition = transform.position;
-        _speedCur = _enemySO.SpeedMove;
+        _speedCur = _speedMove;
+    }
+    protected virtual void Update()
+    {
+        
     }
     protected virtual void FixedUpdate()
     {
@@ -31,10 +37,12 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void ChangeState(EnemyState State)
     {
+        if (_anim == null) return;
         _anim.SetInteger("State", (int)State);
     }
-    protected void CheckFlip(bool check)
+    protected void CheckFlipX(bool check)
     {
+        if(_col == null && _sp == null) return;
         if (check)
         {
             _sp.flipX = true;
@@ -44,6 +52,20 @@ public abstract class Enemy : MonoBehaviour
         {
             _sp.flipX = false;
             _col.offset = _col.offset.x < 0f ? new Vector2(-_col.offset.x, _col.offset.y) : _col.offset;
+        }
+    }
+    protected void CheckFlipY(bool check)
+    {
+        if (_col == null && _sp == null) return;
+        if (check)
+        {
+            _sp.flipY = true;
+            _col.offset = _col.offset.y > 0f ? new Vector2(_col.offset.x, -_col.offset.y) : _col.offset;
+        }
+        else
+        {
+            _sp.flipY = false;
+            _col.offset = _col.offset.y < 0f ? new Vector2(_col.offset.x, -_col.offset.y) : _col.offset;
         }
     }
     public virtual void TakeDamageEnemy(int dmg)

@@ -117,6 +117,8 @@ GameObject:
   - component: {fileID: 6055843932449892398}
   - component: {fileID: 4722384613914371709}
   - component: {fileID: -577994950587276387}
+  - component: {fileID: 6199527394344236927}
+  - component: {fileID: 6727112365109778830}
   m_Layer: 11
   m_Name: Bat_02
   m_TagString: Untagged
@@ -202,3 +204,61 @@ CapsuleCollider2D:
   m_Offset: {x: 0.32558417, y: -0.2621951}
   m_Size: {x: 1.2145569, y: 1.2145569}
   m_Direction: 0
+--- !u!70 &6199527394344236927
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6577683087713437317}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 7, y: 7}
+  m_Direction: 0
+--- !u!114 &6727112365109778830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6577683087713437317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaa4297ab0e23ac479e5fedbe7e63605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _anim: {fileID: 5995318431239667972}
+  _sp: {fileID: 8222919367276799399}
+  _rb: {fileID: 4722384613914371709}
+  _col: {fileID: -577994950587276387}
+  _player: {fileID: 3612930459544987954, guid: 23d0e26985ca7d942b80927e056d1fc0, type: 3}
+  _enemySO: {fileID: 11400000, guid: 0999ef4c2b66c1946b54a4a11b72e091, type: 2}
+  _speedCur: 0
+  _speedMove: 1.5
+  _movingDist: 3
+  _target: {x: 0, y: 0, z: 0}
+  _canRotation: 0
