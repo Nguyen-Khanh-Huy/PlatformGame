@@ -262,3 +262,10 @@ MonoBehaviour:
   _movingDist: 3
   _target: {x: 0, y: 0, z: 0}
   _canRotation: 0
+  _newPos: 0
+  _posXLeft: 0
+  _posXRight: 0
+  _posYUp: 0
+  _posYDown: 0
+  randomX: 0
+  randomY: 0

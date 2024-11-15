@@ -219,7 +219,7 @@ MonoBehaviour:
   _sp: {fileID: 5001982772642360343}
   _rb: {fileID: -8131859197338535907}
   _col: {fileID: -1689795649079012113}
-  _player: {fileID: 3612930459544987954, guid: 23d0e26985ca7d942b80927e056d1fc0, type: 3}
+  _player: {fileID: 0}
   _enemySO: {fileID: 11400000, guid: 0999ef4c2b66c1946b54a4a11b72e091, type: 2}
   _speedCur: 0
   _speedMove: 5

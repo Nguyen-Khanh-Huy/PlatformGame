@@ -8,7 +8,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected SpriteRenderer _sp;
     [SerializeField] protected Rigidbody2D _rb;
     [SerializeField] protected CapsuleCollider2D _col;
-    [SerializeField] protected Player _player;
+    [SerializeField] protected Transform _player;
     [SerializeField] protected EnemySO _enemySO;
 
     [SerializeField] protected float _speedCur;
@@ -21,6 +21,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Start()
     {
+        _player = GameObject.Find("Player").transform;
         _startPosition = transform.position;
         _speedCur = _speedMove;
     }

@@ -5,12 +5,15 @@ using UnityEngine;
 public class EnemyMovingFree : Enemy
 {
     [SerializeField] private bool _canRotation;
-    private bool _newPos;
+    [SerializeField] private bool _newPos;
 
-    private float _posXLeft;
-    private float _posXRight;
-    private float _posYUp;
-    private float _posYDown;
+    [SerializeField] private float _posXLeft;
+    [SerializeField] private float _posXRight;
+    [SerializeField] private float _posYUp;
+    [SerializeField] private float _posYDown;
+
+    [SerializeField] private float randomX;
+    [SerializeField] private float randomY;
 
     private float _timeCheckCol = 0f;
     protected override void Start()
@@ -26,7 +29,7 @@ public class EnemyMovingFree : Enemy
     {
         if(_target == _player.transform.position)
         {
-            ChangeState(EnemyState.Moving);
+            ChangeState(EnemyState.Chasing);
             _speedCur = _enemySO.SpeedChasing;
         }
         else
@@ -35,8 +38,8 @@ public class EnemyMovingFree : Enemy
             {
                 ChangeState(EnemyState.Moving);
                 _speedCur = _speedMove;
-                float randomX = Random.Range(_posXLeft, _posXRight);
-                float randomY = Random.Range(_posYDown, _posYUp);
+                randomX = Random.Range(_posXLeft, _posXRight);
+                randomY = Random.Range(_posYDown, _posYUp);
                 _target = new Vector3(randomX, randomY, transform.position.z);
                 _newPos = true;
             }
@@ -45,6 +48,7 @@ public class EnemyMovingFree : Enemy
                 _newPos = false;
             }
         }
+        
         if (_canRotation) 
         {
             CheckFlipY(_rb.velocity.x < 0f);
@@ -82,7 +86,7 @@ public class EnemyMovingFree : Enemy
             if (_timeCheckCol >= 1f)
             {
                 _target = collision.transform.position;
-                //_newPos = false;
+                _newPos = false;
             }
         }
     }

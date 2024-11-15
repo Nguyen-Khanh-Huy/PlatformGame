@@ -149,7 +149,7 @@ MonoBehaviour:
   _sp: {fileID: 106119159619819945}
   _rb: {fileID: -7999386439921197341}
   _col: {fileID: -566817924235888077}
-  _player: {fileID: 3612930459544987954, guid: 23d0e26985ca7d942b80927e056d1fc0, type: 3}
+  _player: {fileID: 0}
   _enemySO: {fileID: 11400000, guid: 0999ef4c2b66c1946b54a4a11b72e091, type: 2}
   _speedCur: 0
   _speedMove: 1.5
