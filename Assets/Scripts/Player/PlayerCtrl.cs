@@ -15,6 +15,7 @@ public abstract class PlayerCtrl : MonoBehaviour
 
     [SerializeField] protected PlayerSO _playerSO;
 
+    [SerializeField] protected int _curHp;
     [SerializeField] protected float _speedCur;
     [SerializeField] protected float _startGravity;
     [SerializeField] protected bool _isDead;
@@ -23,12 +24,13 @@ public abstract class PlayerCtrl : MonoBehaviour
 
     protected virtual void Start()
     {
+        _curHp = _playerSO.Hp;
         _startGravity = _rb.gravityScale;
         _speedCur = _playerSO.SpeedMove;
     }
     protected virtual void Update()
     {
-        
+        CheckDead();
     }
     protected virtual void FixedUpdate()
     {
@@ -98,19 +100,19 @@ public abstract class PlayerCtrl : MonoBehaviour
     public virtual void TakeDamagePlayer(int dmg)
     {
         if (_isDead) return;
-        if (_playerSO.Hp > 0)
+        if (_curHp > 0)
         {
-            _playerSO.Hp -= dmg;
-            if (_playerSO.Hp <= 0)
+            _curHp -= dmg;
+            if (_curHp <= 0)
             {
-                _playerSO.Hp = 0;
+                _curHp = 0;
                 _isDead = true;
-                Death();
             }
         }
     }
-    protected virtual void Death()
+    protected virtual void CheckDead()
     {
+        if(!_isDead) return;
         gameObject.layer = LayerMask.NameToLayer("Dead");
         _rb.velocity = Vector2.zero;
         ChangeState(PlayerState.Dead);

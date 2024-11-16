@@ -157,7 +157,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -237,7 +237,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 6, y: 0.5}
+  m_Size: {x: 6.5, y: 0.5}
   m_Direction: 1
 --- !u!114 &264889461395038330
 MonoBehaviour:
@@ -257,9 +257,11 @@ MonoBehaviour:
   _col: {fileID: 5223106524053489421}
   _player: {fileID: 0}
   _enemySO: {fileID: 11400000, guid: 0999ef4c2b66c1946b54a4a11b72e091, type: 2}
+  _curHp: 0
   _speedCur: 0
   _speedMove: 1.5
   _movingDist: 5
   _target: {x: 0, y: 0, z: 0}
+  _knockBack: 0
   _enemyDir: 2
   _noTarger: 0

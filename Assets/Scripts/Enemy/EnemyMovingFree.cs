@@ -5,17 +5,14 @@ using UnityEngine;
 public class EnemyMovingFree : Enemy
 {
     [SerializeField] private bool _canRotation;
-    [SerializeField] private bool _newPos;
 
-    [SerializeField] private float _posXLeft;
-    [SerializeField] private float _posXRight;
-    [SerializeField] private float _posYUp;
-    [SerializeField] private float _posYDown;
-
-    [SerializeField] private float randomX;
-    [SerializeField] private float randomY;
-
+    private bool _newPos;
+    private float _posXLeft;
+    private float _posXRight;
+    private float _posYUp;
+    private float _posYDown;
     private float _timeCheckCol = 0f;
+
     protected override void Start()
     {
         base.Start();
@@ -38,8 +35,8 @@ public class EnemyMovingFree : Enemy
             {
                 ChangeState(EnemyState.Moving);
                 _speedCur = _speedMove;
-                randomX = Random.Range(_posXLeft, _posXRight);
-                randomY = Random.Range(_posYDown, _posYUp);
+                float randomX = Random.Range(_posXLeft, _posXRight);
+                float randomY = Random.Range(_posYDown, _posYUp);
                 _target = new Vector3(randomX, randomY, transform.position.z);
                 _newPos = true;
             }
@@ -58,6 +55,7 @@ public class EnemyMovingFree : Enemy
 
         _direction = _target - transform.position;
         _direction.Normalize();
+        if (_knockBack) return;
         _rb.velocity = _direction * _speedCur;
     }
     private void RotateToTarget()
@@ -74,8 +72,10 @@ public class EnemyMovingFree : Enemy
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Player _player = collision.collider.GetComponent<Player>();
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
+            _player.TakeDamagePlayer(_enemySO.Damage);
             _timeCheckCol = 0f;
         }
     }

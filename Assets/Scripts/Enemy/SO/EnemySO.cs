@@ -11,4 +11,6 @@ public class EnemySO : ScriptableObject
 
     [Header("Moving:")]
     public float SpeedChasing;
+    public float KnockBackTime;
+    public float KnockBackForce;
 }

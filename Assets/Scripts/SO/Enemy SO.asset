@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Hp: 3
   Damage: 1
-  SpeedMove: 1.5
   SpeedChasing: 3
-  MovingDist: 3
+  KnockBackTime: 0.2
+  KnockBackForce: 6

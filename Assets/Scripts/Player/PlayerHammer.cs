@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerHammer : MonoBehaviour
 {
+    [SerializeField] private PlayerSO _playerSO;
     [SerializeField] private SpriteRenderer _sp;
     [SerializeField] private Vector3 _offset;
     private void Update()
@@ -29,15 +30,17 @@ public class PlayerHammer : MonoBehaviour
     }
     private void HammerAttack()
     {
-        Collider2D col = Physics2D.OverlapCircle(transform.position + _offset, 0.6f, LayerMask.GetMask("Enemy"));
+        Collider2D col = Physics2D.OverlapCircle(transform.position + _offset, 0.8f, LayerMask.GetMask("Enemy"));
         if(col != null)
         {
-            Debug.Log("Take Dame Enemy");
+            Enemy _enemy = col.GetComponent<Enemy>();
+            Vector2 dir = col.transform.position - transform.position;
+            _enemy.TakeDamageEnemy(_playerSO.Damage, dir);
         }
     }
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.yellow;
-    //    Gizmos.DrawSphere(transform.position + _offset, 0.6f);
-    //}
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(transform.position + _offset, 0.8f);
+    }
 }

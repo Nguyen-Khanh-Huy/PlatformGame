@@ -150,7 +150,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6490942268292051837}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -168,7 +168,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &3917585716372464111
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -257,15 +257,9 @@ MonoBehaviour:
   _col: {fileID: 3917585716372464111}
   _player: {fileID: 0}
   _enemySO: {fileID: 11400000, guid: 0999ef4c2b66c1946b54a4a11b72e091, type: 2}
+  _curHp: 0
   _speedCur: 0
   _speedMove: 1.5
   _movingDist: 3
   _target: {x: 0, y: 0, z: 0}
   _canRotation: 0
-  _newPos: 0
-  _posXLeft: 0
-  _posXRight: 0
-  _posYUp: 0
-  _posYDown: 0
-  randomX: 0
-  randomY: 0

@@ -11,6 +11,9 @@ public class Player : PlayerCtrl
     }
     protected override void Update()
     {
+        base.Update();
+        if (_isDead) return;
+
         JumpCheck();
         FlyAndOnAirCheck();
 

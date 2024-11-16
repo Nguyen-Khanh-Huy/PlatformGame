@@ -23,6 +23,7 @@ public class EnemyMovingLine : Enemy
     }
     protected override void Move()
     {
+        if(_target != _player.transform.position && _target != _posXLeft && _target != _posXRight && _target != _posYUp && _target != _posYDown) return;
         if (_target == _player.transform.position)
         {
             ChangeState(EnemyState.Chasing);
@@ -41,7 +42,11 @@ public class EnemyMovingLine : Enemy
         {
             transform.position += _direction * _speedCur * Time.deltaTime;
         }
-        else { _rb.velocity = _direction * _speedCur; }
+        else 
+        { 
+            if(_knockBack) return;
+            _rb.velocity = _direction * _speedCur; 
+        }
 
         CheckFlipX(_rb.velocity.x < 0f);
         if (gameObject.name == "Fish_Vertical")
@@ -75,8 +80,10 @@ public class EnemyMovingLine : Enemy
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (_noTarger) return;
+        Player _player = collision.collider.GetComponent<Player>();
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
+            _player.TakeDamagePlayer(_enemySO.Damage);
             _timeCheckCol = 0f;
         }
     }
