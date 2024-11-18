@@ -7,6 +7,7 @@ public class PlayerHammer : MonoBehaviour
     [SerializeField] private PlayerSO _playerSO;
     [SerializeField] private SpriteRenderer _sp;
     [SerializeField] private Vector3 _offset;
+    private Vector2 dir;
     private void Update()
     {
         CheckingOffset();
@@ -15,32 +16,32 @@ public class PlayerHammer : MonoBehaviour
     {
         if (_sp.flipX == true)
         {
-            if (_offset.x > 0f)
-            {
-                _offset.x = -_offset.x;
-            }
+            _offset.x = _offset.x > 0f ? -_offset.x : _offset.x;
         }
         else
         {
-            if (_offset.x < 0f)
-            {
-                _offset.x = -_offset.x;
-            }
+            _offset.x = _offset.x < 0f ? -_offset.x : _offset.x;
         }
     }
     private void HammerAttack()
     {
-        Collider2D col = Physics2D.OverlapCircle(transform.position + _offset, 0.8f, LayerMask.GetMask("Enemy"));
-        if(col != null)
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position + _offset, 1f, LayerMask.GetMask("Enemy"));
+        foreach (Collider2D col in colliders)
         {
-            Enemy _enemy = col.GetComponent<Enemy>();
-            Vector2 dir = col.transform.position - transform.position;
-            _enemy.TakeDamageEnemy(_playerSO.Damage, dir);
+            if (col != null && !col.isTrigger)
+            {
+                Enemy _enemy = col.GetComponent<Enemy>();
+                if (_enemy != null)
+                {
+                    dir = _enemy.transform.position - transform.position;
+                    _enemy.TakeDamageEnemy(_playerSO.Damage, dir);
+                }
+            }
         }
     }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(transform.position + _offset, 0.8f);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.yellow;
+    //    Gizmos.DrawSphere(transform.position + _offset, 1f);
+    //}
 }
