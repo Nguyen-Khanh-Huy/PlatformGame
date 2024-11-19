@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2073947439778644616}
   - component: {fileID: -7890371053910740852}
+  - component: {fileID: 7656901297077179137}
   m_Layer: 0
-  m_Name: Heart
+  m_Name: Hp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,6 +69,18 @@ CircleCollider2D:
   m_Offset: {x: 0.004947901, y: 0.037109017}
   serializedVersion: 2
   m_Radius: 0.37712783
+--- !u!114 &7656901297077179137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6124456064227940803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 592bfc37fefb9d34a9d502e90613a7ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7606016602834138686
 GameObject:
   m_ObjectHideFlags: 0

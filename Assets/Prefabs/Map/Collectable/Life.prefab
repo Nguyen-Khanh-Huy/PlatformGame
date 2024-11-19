@@ -116,6 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 73032274128632312}
   - component: {fileID: 8929134354442572383}
+  - component: {fileID: 1174934219834571270}
   m_Layer: 0
   m_Name: Life
   m_TagString: Untagged
@@ -174,3 +175,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.0012795627}
   serializedVersion: 2
   m_Radius: 0.2914271
+--- !u!114 &1174934219834571270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5364396031613114188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a05d2bc3bf92d664eaa4e9a2be635dab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
