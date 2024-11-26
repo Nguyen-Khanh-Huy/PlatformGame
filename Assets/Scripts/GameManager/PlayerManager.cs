@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerManager : Singleton<PlayerManager>
 {
+    [SerializeField] private PlayerSO _playerSO;
+
     public int hp;
     public int life;
     public int bullet;
@@ -23,5 +25,15 @@ public class PlayerManager : Singleton<PlayerManager>
     public PlayerData GetData()
     {
         return new PlayerData(hp, life, bullet, key, coin);
+    }
+    public void PlayerStartFirst()
+    {
+        PlayerCtrl.Ins.CurHp = _playerSO.Hp;
+        hp = PlayerCtrl.Ins.CurHp;
+        GameData.Ins.SaveGame();
+    }
+    public void PlayerNotFirst()
+    {
+        PlayerCtrl.Ins.CurHp = hp;
     }
 }

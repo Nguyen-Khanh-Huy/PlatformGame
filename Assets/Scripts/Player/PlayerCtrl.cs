@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PlayerCtrl : MonoBehaviour
+public abstract class PlayerCtrl : Singleton<PlayerCtrl>
 {
     [SerializeField] protected PlayerObstacle Obs;
     [SerializeField] protected Animator _anim;
@@ -21,10 +21,15 @@ public abstract class PlayerCtrl : MonoBehaviour
     [SerializeField] protected bool _isDead;
 
     protected int hoz, vert;
+    public int CurHp { get => _curHp; set => _curHp = value; }
+    public bool IsDead { get => _isDead; set => _isDead = value; }
 
+    public override void Awake()
+    {
+        DontDestroy(false);
+    }
     protected virtual void Start()
     {
-        _curHp = _playerSO.Hp;
         _startGravity = _rb.gravityScale;
         _speedCur = _playerSO.SpeedMove;
     }
@@ -100,15 +105,24 @@ public abstract class PlayerCtrl : MonoBehaviour
     public virtual void TakeDamagePlayer(int dmg)
     {
         if (_isDead) return;
-        if (_curHp > 0)
+        _curHp -= dmg;
+        PlayerManager.Ins.hp = _curHp;
+        if (_curHp <= 0)
         {
-            _curHp -= dmg;
-            if (_curHp <= 0)
+            if (PlayerManager.Ins.life >= 0)
+            {
+                _curHp = _playerSO.Hp;
+                PlayerManager.Ins.hp = _curHp;
+                PlayerManager.Ins.life--;
+            }
+            else
             {
                 _curHp = 0;
+                PlayerManager.Ins.hp = _curHp;
                 _isDead = true;
             }
         }
+        GameData.Ins.SaveGame();
     }
     protected virtual void CheckDead()
     {

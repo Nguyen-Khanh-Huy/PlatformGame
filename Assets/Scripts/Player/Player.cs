@@ -53,9 +53,11 @@ public class Player : PlayerCtrl
             {
                 ChangeState(PlayerState.Attack);
             }
-            else if (GamePad.Ins.CanBullet)
+            else if (GamePad.Ins.CanBullet && PlayerManager.Ins.bullet > 0)
             {
                 ChangeState(PlayerState.Bullet);
+                PlayerManager.Ins.bullet--;
+                GameData.Ins.SaveGame();
             }
             else if (!GamePad.Ins.CanFly && _rb.velocity.y > 0f || GamePad.Ins.CanFly && _rb.velocity.y > 0f)
             {
@@ -103,9 +105,11 @@ public class Player : PlayerCtrl
             {
                 ChangeState(PlayerState.Attack);
             }
-            else if (GamePad.Ins.CanBullet)
+            else if (GamePad.Ins.CanBullet && PlayerManager.Ins.bullet > 0)
             {
                 ChangeState(PlayerState.Bullet);
+                PlayerManager.Ins.bullet--;
+                GameData.Ins.SaveGame();
             }
             else if (!_checkLandAndJump)
             {
@@ -138,9 +142,11 @@ public class Player : PlayerCtrl
             ActiveCol(_colDefaul);
             _rb.gravityScale = 0;
             _rb.velocity = Vector2.zero;
-            if (GamePad.Ins.CanBullet)
+            if (GamePad.Ins.CanBullet && PlayerManager.Ins.bullet > 0)
             {
                 ChangeState(PlayerState.Bullet);
+                PlayerManager.Ins.bullet--;
+                GameData.Ins.SaveGame();
             }
             else if (GamePad.Ins.IsStatic)
             {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,11 +11,16 @@ public class MainMenu : MonoBehaviour
         {
             Debug.Log("Lan 1");
             GameData.Ins.SaveGame();
+            LevelManager.Ins.LevelStartFirst();
+            PlayerManager.Ins.PlayerStartFirst();
         }
         else
         {
             Debug.Log("Lan 2,3,4,5,...");
+            //LevelManager.Ins.LevelUpdateIndex();
             GameData.Ins.LoadGame();
+            PlayerManager.Ins.PlayerNotFirst();
+            //LevelManager.Ins.levelPasseds[LevelManager.Ins.levelId] = false;
         }
         Pref.FirstTime = false;
     }

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public abstract class Collectable : MonoBehaviour
 {
@@ -21,6 +20,7 @@ public abstract class Collectable : MonoBehaviour
     {
         TriggerHandle();
         Destroy(gameObject);
+        // vfx
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

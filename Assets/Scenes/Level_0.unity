@@ -166,11 +166,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57251430a5d170d4aa96286d3f643e66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curLevelId: 0
+  gamePlayTime: 0
+  playTime: 0
+  levelItems:
+  - imageLevel: {fileID: 21300000, guid: 0d60a21c604ee974d968924a2067780d, type: 3}
+    starLevel:
+      timeOneStar: 180
+      timeTwoStar: 120
+      timeThreeStar: 60
+  - imageLevel: {fileID: 21300000, guid: 62f6b8024f2a89e498da52de90c95ec3, type: 3}
+    starLevel:
+      timeOneStar: 240
+      timeTwoStar: 180
+      timeThreeStar: 120
+  - imageLevel: {fileID: 21300000, guid: c481c71eb8387104a9d3c9f079b48094, type: 3}
+    starLevel:
+      timeOneStar: 300
+      timeTwoStar: 240
+      timeThreeStar: 180
+  - imageLevel: {fileID: 21300000, guid: 1c98fe48fb8fb604b8b4c81a8d314783, type: 3}
+    starLevel:
+      timeOneStar: 360
+      timeTwoStar: 300
+      timeThreeStar: 240
+  - imageLevel: {fileID: 21300000, guid: 914ab7f0dbbb26e44944f8727bec9e55, type: 3}
+    starLevel:
+      timeOneStar: 420
+      timeTwoStar: 360
+      timeThreeStar: 300
+  levelId: 0
   checkPoints: []
   levelUnlockeds: 
   levelPasseds: 
-  playTimes: []
   completeTimes: []
 --- !u!1001 &357421366
 PrefabInstance:
@@ -224,14 +251,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 9038193040987546066, guid: 23d0e26985ca7d942b80927e056d1fc0, type: 3}
-      propertyPath: _offset.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9038193040987546066, guid: 23d0e26985ca7d942b80927e056d1fc0, type: 3}
-      propertyPath: _playerSO
-      value: 
-      objectReference: {fileID: 11400000, guid: a9145955372a68947b6353ed18af9033, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -527,11 +546,10 @@ MonoBehaviour:
     musicVol: 0
     soundVol: 0
   levelData:
-    curLevelId: 0
+    levelId: 0
     checkPoints: []
     levelUnlockeds: 
     levelPasseds: 
-    playTimes: []
     completeTimes: []
 --- !u!114 &820415636 stripped
 MonoBehaviour:
@@ -678,6 +696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f08ce0cb2f62d341be030bf12aefd2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerSO: {fileID: 11400000, guid: a9145955372a68947b6353ed18af9033, type: 2}
   hp: 0
   life: 0
   bullet: 0
@@ -727,6 +746,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0193825a289b5a946a353fa95d11d6af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1885542554
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1885542555}
+  - component: {fileID: 1885542556}
+  m_Layer: 0
+  m_Name: SceneController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1885542555
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885542554}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1885542556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885542554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f4a2f0ed701ae54d800d69f358ce2b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -740,3 +803,4 @@ SceneRoots:
   - {fileID: 1631317832}
   - {fileID: 125280670}
   - {fileID: 1219947514}
+  - {fileID: 1885542555}

@@ -36,6 +36,11 @@ public enum GamePref
     GameData,
     FirstTime
 }
+public enum GameScene
+{
+    MainMenu,
+    Level_
+}
 
 [System.Serializable]
 public class PlayerData
@@ -71,20 +76,39 @@ public class AudioData
 [System.Serializable]
 public class LevelData
 {
-    public int curLevelId;
+    public int levelId;
     public List<Vector3> checkPoints;
     public List<bool> levelUnlockeds;
     public List<bool> levelPasseds;
-    public List<float> playTimes;
     public List<float> completeTimes;
 
-    public LevelData(int curLevelId, List<Vector3> checkPoints, List<bool> levelUnlockeds, List<bool> levelPasseds, List<float> playTimes, List<float> completeTimes)
+    public LevelData(int levelId, List<Vector3> checkPoints, List<bool> levelUnlockeds, List<bool> levelPasseds, List<float> completeTimes)
     {
-        this.curLevelId = curLevelId;
+        this.levelId = levelId;
         this.checkPoints = checkPoints;
         this.levelUnlockeds = levelUnlockeds;
         this.levelPasseds = levelPasseds;
-        this.playTimes = playTimes;
         this.completeTimes = completeTimes;
     }
+}
+
+[System.Serializable]
+public class Stars
+{
+    public int timeOneStar;
+    public int timeTwoStar;
+    public int timeThreeStar;
+    public int GetStar(int time)
+    {
+        if (time <= timeThreeStar) return 3;
+        else if (time <= timeTwoStar) return 2;
+        else return 1;
+    }
+}
+
+[System.Serializable]
+public class LevelItem
+{
+    public Sprite imageLevel;
+    public Stars starLevel;
 }

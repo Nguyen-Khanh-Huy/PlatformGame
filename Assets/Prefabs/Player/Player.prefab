@@ -275,6 +275,7 @@ MonoBehaviour:
   _colFly: {fileID: 1585437074361666029}
   _colWater: {fileID: 8981575243581604013}
   _playerSO: {fileID: 11400000, guid: a9145955372a68947b6353ed18af9033, type: 2}
+  _curHp: 0
   _speedCur: 0
   _startGravity: 0
   _isDead: 0
@@ -398,8 +399,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0354bf7a78f0da4f9b5d795e5c6a63e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerSO: {fileID: 11400000, guid: a9145955372a68947b6353ed18af9033, type: 2}
   _sp: {fileID: 2501424214659801983}
-  _offset: {x: 0.5, y: -0.5, z: 0}
+  _offset: {x: 0.5, y: 0, z: 0}
 --- !u!114 &1872052013098726260
 MonoBehaviour:
   m_ObjectHideFlags: 0

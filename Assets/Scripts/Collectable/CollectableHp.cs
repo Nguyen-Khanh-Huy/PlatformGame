@@ -6,7 +6,8 @@ public class CollectableHp : Collectable
 {
     protected override void TriggerHandle()
     {
-        PlayerManager.Ins.hp++;
+        PlayerCtrl.Ins.CurHp++;
+        PlayerManager.Ins.hp = PlayerCtrl.Ins.CurHp;
         GameData.Ins.SaveGame();
     }
 }
