@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class GamePad : Singleton<GamePad>
 {
-    //public Joystick joystick;
+    public bool IsOnMobile;
+    public Joystick Joystick;
+
     private bool _canMoveLeft;
     private bool _canMoveRight;
     private bool _canMoveUp;
@@ -35,35 +37,47 @@ public class GamePad : Singleton<GamePad>
     {
         DontDestroy(false);
     }
+    private void Start()
+    {
+        if (IsOnMobile)
+        {UIGamePlayManager.Ins._uiMobileGamepad.SetActive(true);}
+        else
+        {UIGamePlayManager.Ins._uiMobileGamepad.SetActive(false);}
+    }
     private void Update()
     {
-        float hozCheck = Input.GetAxisRaw("Horizontal");
-        float vertCheck = Input.GetAxisRaw("Vertical");
-        _canMoveLeft = hozCheck < 0 ? true : false;
-        _canMoveRight = hozCheck > 0 ? true : false;
-        _canMoveUp = vertCheck > 0 ? true : false;
-        _canMoveDown = vertCheck < 0 ? true : false;
-
-        _canJump = Input.GetKeyDown(KeyCode.Space);
-        _canFly = Input.GetKey(KeyCode.F);
-
-        _canBullet = Input.GetKeyDown(KeyCode.C);
-        _canAttack = Input.GetKeyDown(KeyCode.V);
-
-        if (_canJump)
+        if(!IsOnMobile)
         {
-            _canJumpHolding = false;
-            _checkJumpHolding = true;
-        }
-        if (_checkJumpHolding)
-        {
-            _canJumpHolding = Input.GetKey(KeyCode.Space);
-        }
+            float hozCheck = Input.GetAxisRaw("Horizontal");
+            float vertCheck = Input.GetAxisRaw("Vertical");
+            _canMoveLeft = hozCheck < 0 ? true : false;
+            _canMoveRight = hozCheck > 0 ? true : false;
+            _canMoveUp = vertCheck > 0 ? true : false;
+            _canMoveDown = vertCheck < 0 ? true : false;
 
-        //if (joystick == null) return;
-        //_canMoveLeft = joystick.xValue < 0 ? true : false;
-        //_canMoveRight = joystick.xValue > 0 ? true : false;
-        //_canMoveUp = joystick.yValue > 0 ? true : false;
-        //_canMoveDown = joystick.yValue < 0 ? true : false;
+            _canJump = Input.GetKeyDown(KeyCode.Space);
+            _canFly = Input.GetKey(KeyCode.F);
+
+            _canBullet = Input.GetKeyDown(KeyCode.C);
+            _canAttack = Input.GetKeyDown(KeyCode.V);
+
+            if (_canJump)
+            {
+                _canJumpHolding = false;
+                _checkJumpHolding = true;
+            }
+            if (_checkJumpHolding)
+            {
+                _canJumpHolding = Input.GetKey(KeyCode.Space);
+            }
+        }
+        else
+        {
+            if (Joystick == null) return;
+            _canMoveLeft = Joystick.xValue < 0 ? true : false;
+            _canMoveRight = Joystick.xValue > 0 ? true : false;
+            _canMoveUp = Joystick.yValue > 0 ? true : false;
+            _canMoveDown = Joystick.yValue < 0 ? true : false;
+        }
     }
 }
