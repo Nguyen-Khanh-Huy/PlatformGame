@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
-    private void Awake()
+    private void Start()
     {
         if (Pref.FirstTime)
         {
@@ -19,7 +19,6 @@ public class MainMenu : MonoBehaviour
             Debug.Log("Lan 2,3,4,5,...");
             //LevelManager.Ins.LevelUpdateIndex();
             GameData.Ins.LoadGame();
-            PlayerManager.Ins.PlayerNotFirst();
             //LevelManager.Ins.levelPasseds[LevelManager.Ins.levelId] = false;
         }
         Pref.FirstTime = false;

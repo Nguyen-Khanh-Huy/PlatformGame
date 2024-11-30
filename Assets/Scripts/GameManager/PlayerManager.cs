@@ -28,12 +28,7 @@ public class PlayerManager : Singleton<PlayerManager>
     }
     public void PlayerStartFirst()
     {
-        PlayerCtrl.Ins.CurHp = _playerSO.Hp;
-        hp = PlayerCtrl.Ins.CurHp;
+        hp = _playerSO.Hp;
         GameData.Ins.SaveGame();
-    }
-    public void PlayerNotFirst()
-    {
-        PlayerCtrl.Ins.CurHp = hp;
     }
 }

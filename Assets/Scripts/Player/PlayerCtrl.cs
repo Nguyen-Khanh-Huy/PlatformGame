@@ -32,6 +32,7 @@ public abstract class PlayerCtrl : Singleton<PlayerCtrl>
     {
         _startGravity = _rb.gravityScale;
         _speedCur = _playerSO.SpeedMove;
+        _curHp = PlayerManager.Ins.hp;
     }
     protected virtual void Update()
     {

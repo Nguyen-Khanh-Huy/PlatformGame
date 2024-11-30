@@ -11,6 +11,7 @@ public class UIGamePlayManager : Singleton<UIGamePlayManager>
     public GameObject _uiPauseDialog;
 
     [SerializeField] private Button _btnPause;
+
     [SerializeField] private TMP_Text _txtLife;
     [SerializeField] private TMP_Text _txtHp;
     [SerializeField] private TMP_Text _txtCoin;
