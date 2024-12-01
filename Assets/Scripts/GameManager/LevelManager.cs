@@ -22,11 +22,6 @@ public class LevelManager : Singleton<LevelManager>
             gamePlayTime += Time.deltaTime;
         }
     }
-    public string TimeConvert(double time)
-    {
-        TimeSpan t = TimeSpan.FromSeconds(time);
-        return string.Format("{0:D2}:{1:D2}", t.Minutes, t.Seconds);
-    }
     public void Initialize(LevelData data)
     {
         if (data == null) return;
@@ -40,6 +35,11 @@ public class LevelManager : Singleton<LevelManager>
     public LevelData GetData()
     {
         return new LevelData(levelId, checkPoints, levelUnlockeds, levelPasseds, completeTimes);
+    }
+    public string TimeConvert(double time)
+    {
+        TimeSpan t = TimeSpan.FromSeconds(time);
+        return string.Format("{0:D2}:{1:D2}", t.Minutes, t.Seconds);
     }
     public void LevelStartFirst()
     {

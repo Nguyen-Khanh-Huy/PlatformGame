@@ -35,10 +35,10 @@ public class UIMenuShopDialog : MonoBehaviour
         _txtLifePrice.text = _lifePrice.ToString();
         _txtKeyPrice.text = _keyPrice.ToString();
 
-        _btnBullet.onClick.AddListener(() => ButtonAction(PlayerManager.Ins.bullet, _bulletPrice));
-        _btnHp.onClick.AddListener(() => ButtonAction(PlayerManager.Ins.hp, _hpPrice));
-        _btnLife.onClick.AddListener(() => ButtonAction(PlayerManager.Ins.life, _lifePrice));
-        _btnKey.onClick.AddListener(() => ButtonAction(PlayerManager.Ins.key, _keyPrice));
+        _btnBullet.onClick.AddListener(() => ButtonAction(ref PlayerManager.Ins.bullet, _bulletPrice));
+        _btnHp.onClick.AddListener(() => ButtonAction(ref PlayerManager.Ins.hp, _hpPrice));
+        _btnLife.onClick.AddListener(() => ButtonAction(ref PlayerManager.Ins.life, _lifePrice));
+        _btnKey.onClick.AddListener(() => ButtonAction(ref PlayerManager.Ins.key, _keyPrice));
 
         _btnClose.onClick.AddListener(() => UIMenuManager.Ins.Close(gameObject));
     }
@@ -51,7 +51,7 @@ public class UIMenuShopDialog : MonoBehaviour
 
         _txtCoin.text = PlayerManager.Ins.coin.ToString();
     }
-    private void ButtonAction(int itemData, int price)
+    private void ButtonAction(ref int itemData, int price)
     {
         if(PlayerManager.Ins.coin >= price)
         {

@@ -16,6 +16,7 @@ public class UIGamePlayManager : Singleton<UIGamePlayManager>
     [SerializeField] private TMP_Text _txtHp;
     [SerializeField] private TMP_Text _txtCoin;
     [SerializeField] private TMP_Text _txtKey;
+    [SerializeField] private TMP_Text _txtTime;
     [SerializeField] private TMP_Text _txtBullet;
 
     public override void Awake()
@@ -32,6 +33,7 @@ public class UIGamePlayManager : Singleton<UIGamePlayManager>
         _txtHp.text = PlayerManager.Ins.hp.ToString();
         _txtCoin.text = PlayerManager.Ins.coin.ToString();
         _txtKey.text = PlayerManager.Ins.key.ToString();
+        _txtTime.text = LevelManager.Ins.TimeConvert(LevelManager.Ins.gamePlayTime);
         if (GamePad.Ins.IsOnMobile)
         {
             _txtBullet.text = PlayerManager.Ins.bullet.ToString();
@@ -40,9 +42,11 @@ public class UIGamePlayManager : Singleton<UIGamePlayManager>
     public void Show(GameObject obj)
     {
         obj.SetActive(true);
+        Time.timeScale = 0f;
     }
     public void Close(GameObject obj)
     {
         obj.SetActive(false);
+        Time.timeScale = 1f;
     }
 }
