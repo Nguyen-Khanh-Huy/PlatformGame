@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
         {
             Debug.Log("Lan 1");
             GameData.Ins.SaveGame();
+            AudioManager.Ins.AudioStartFirst();
             LevelManager.Ins.LevelStartFirst();
             PlayerManager.Ins.PlayerStartFirst();
         }
@@ -19,8 +20,9 @@ public class MainMenu : MonoBehaviour
             Debug.Log("Lan 2,3,4,5,...");
             //LevelManager.Ins.LevelUpdateIndex();
             GameData.Ins.LoadGame();
-            //LevelManager.Ins.levelPasseds[LevelManager.Ins.levelId] = false;
         }
+        AudioManager.Ins.AusMusic.volume = AudioManager.Ins.VolumeMusic;
+        AudioManager.Ins.AusSFX.volume = AudioManager.Ins.VolumeSFX;
         Pref.FirstTime = false;
     }
 }

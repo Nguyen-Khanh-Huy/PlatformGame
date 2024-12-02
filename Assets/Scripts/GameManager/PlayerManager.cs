@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerManager : Singleton<PlayerManager>
 {
-    [SerializeField] private PlayerSO _playerSO;
+    public PlayerSO PlayerSO;
 
     public int hp;
     public int life;
@@ -28,7 +28,13 @@ public class PlayerManager : Singleton<PlayerManager>
     }
     public void PlayerStartFirst()
     {
-        hp = _playerSO.Hp;
+        hp = PlayerSO.Hp;
         GameData.Ins.SaveGame();
+    }
+    public void Revival()
+    {
+        PlayerCtrl.Ins.CurHp = hp;
+        hp = PlayerCtrl.Ins.CurHp;
+        LevelManager.Ins.BackToCheckPoint();
     }
 }

@@ -11,7 +11,6 @@ public class Player : PlayerCtrl
     }
     protected override void Update()
     {
-        base.Update();
         if (_isDead) return;
 
         JumpCheck();
@@ -40,7 +39,8 @@ public class Player : PlayerCtrl
     {
         if (GamePad.Ins.CanJump && (Obs.IsOnGround || Obs.IsMovingPlatform || Obs.IsOnWaterSurface))
         {
-            _rb.velocity = new Vector2(_rb.velocity.x, _playerSO.JumpForce);
+            _rb.velocity = new Vector2(_rb.velocity.x, PlayerManager.Ins.PlayerSO.JumpForce);
+            AudioManager.Ins.PlaySFX(AudioManager.Ins.SfxJump);
         }
     }
     private void FlyAndOnAirCheck()
@@ -64,7 +64,7 @@ public class Player : PlayerCtrl
                 ChangeState(PlayerState.Jump);
                 ActiveCol(_colDefaul);
 
-                _speedCur = _playerSO.SpeedMove;
+                _speedCur = PlayerManager.Ins.PlayerSO.SpeedMove;
                 _rb.gravityScale = _startGravity;
 
                 MoveFull();
@@ -74,7 +74,7 @@ public class Player : PlayerCtrl
                 ChangeState(PlayerState.OnAir);
                 ActiveCol(_colDefaul);
 
-                _speedCur = _playerSO.SpeedMove;
+                _speedCur = PlayerManager.Ins.PlayerSO.SpeedMove;
                 _rb.gravityScale = _startGravity;
 
                 MoveFull();
@@ -84,7 +84,7 @@ public class Player : PlayerCtrl
                 ChangeState(PlayerState.Fly);
                 ActiveCol(_colFly);
 
-                _speedCur = _playerSO.SpeedFly;
+                _speedCur = PlayerManager.Ins.PlayerSO.SpeedFly;
                 _rb.gravityScale = 0;
 
                 MoveFly();
@@ -95,7 +95,7 @@ public class Player : PlayerCtrl
     {
         if (Obs.IsOnGround)
         {
-            _speedCur = _playerSO.SpeedMove;
+            _speedCur = PlayerManager.Ins.PlayerSO.SpeedMove;
             GamePad.Ins.CanMoveUp = false;
             GamePad.Ins.CanMoveDown = false;
             GamePad.Ins.CanFly = false;
@@ -117,11 +117,12 @@ public class Player : PlayerCtrl
                 GamePad.Ins.CanJump = false;
                 GamePad.Ins.CanJumpHolding = false;
                 ChangeState(PlayerState.Land);
+                AudioManager.Ins.PlaySFX(AudioManager.Ins.SfxLand);
             }
             else if (GamePad.Ins.IsStatic || (_anim.GetInteger("State") == (int)PlayerState.Land) && GamePad.Ins.CanJumpHolding)
             {
-                ChangeState(PlayerState.Idle);
                 _rb.velocity = Vector2.zero;
+                ChangeState(PlayerState.Idle);
             }
             else if (GamePad.Ins.CanMoveLeft || GamePad.Ins.CanMoveRight)
             {
@@ -138,7 +139,7 @@ public class Player : PlayerCtrl
             GamePad.Ins.CanFly = false;
             GamePad.Ins.CanJump = false;
             GamePad.Ins.CanJumpHolding = false;
-            _speedCur = _playerSO.SpeedLadder;
+            _speedCur = PlayerManager.Ins.PlayerSO.SpeedLadder;
             ActiveCol(_colDefaul);
             _rb.gravityScale = 0;
             _rb.velocity = Vector2.zero;
@@ -163,7 +164,7 @@ public class Player : PlayerCtrl
     {
         if (Obs.IsOnWaterSurface)
         {
-            _speedCur = _playerSO.SpeedSwim;
+            _speedCur = PlayerManager.Ins.PlayerSO.SpeedSwim;
             _rb.gravityScale = 0;
             ChangeState(PlayerState.SwimSurface);
             ActiveCol(_colWater);
@@ -177,7 +178,7 @@ public class Player : PlayerCtrl
         }
         else if (Obs.IsOnWaterDeep)
         {
-            _speedCur = _playerSO.SpeedSwim;
+            _speedCur = PlayerManager.Ins.PlayerSO.SpeedSwim;
             _rb.gravityScale = 0;
             ChangeState(PlayerState.SwimDeep);
             ActiveCol(_colWater);

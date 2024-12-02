@@ -22,6 +22,8 @@ public abstract class Enemy : MonoBehaviour
     protected Vector3 _startPosition;
     protected Vector3 _direction;
 
+    protected abstract void Move();
+
     protected virtual void Start()
     {
         _player = GameObject.Find("Player").transform;
@@ -38,9 +40,6 @@ public abstract class Enemy : MonoBehaviour
         if (_isDead) return;
         Move();
     }
-
-    protected abstract void Move();
-
     protected virtual void ChangeState(EnemyState State)
     {
         if (_anim == null) return;
@@ -82,6 +81,7 @@ public abstract class Enemy : MonoBehaviour
     public virtual void TakeDamageEnemy(int dmg, Vector2 attackDir)
     {
         if (_isDead) return;
+        AudioManager.Ins.PlaySFX(AudioManager.Ins.SfxGetHit);
         _knockBack = true;
         if (_curHp > 0)
         {
@@ -103,6 +103,7 @@ public abstract class Enemy : MonoBehaviour
     {
         gameObject.layer = LayerMask.NameToLayer("Dead");
         _rb.velocity = Vector2.zero;
+        AudioManager.Ins.PlaySFX(AudioManager.Ins.SfxDeadEnemy);
         Destroy(gameObject, 0.1f);
         _isDead = true;
     }

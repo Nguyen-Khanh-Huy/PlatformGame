@@ -6,6 +6,7 @@ public class CollectableCoin : Collectable
 {
     protected override void TriggerHandle()
     {
+        AudioManager.Ins.PlaySFX(AudioManager.Ins.SfxCollectCoin);
         PlayerManager.Ins.coin++;
         GameData.Ins.SaveGame();
     }

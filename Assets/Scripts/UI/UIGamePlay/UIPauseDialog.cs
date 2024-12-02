@@ -12,22 +12,22 @@ public class UIPauseDialog : MonoBehaviour
     [SerializeField] private Button _btnResume;
     private void Start()
     {
-        _btnRestart.onClick.AddListener(PauseRestart);
-        _btnSetting.onClick.AddListener(PauseSetting);
-        _btnExit.onClick.AddListener(ExitPause);
+        _btnRestart.onClick.AddListener(BtnRestart);
+        _btnSetting.onClick.AddListener(BtnSetting);
+        _btnExit.onClick.AddListener(BtnPause);
         _btnResume.onClick.AddListener(() => UIGamePlayManager.Ins.Close(gameObject));
     }
-    private void PauseRestart()
+    private void BtnRestart()
     {
         UIGamePlayManager.Ins.Close(gameObject);
         SceneController.Ins.LoadLevelScene(LevelManager.Ins.levelId);
     }
-    private void PauseSetting()
+    private void BtnSetting()
     {
         UIGamePlayManager.Ins.Close(gameObject);
-        UIGamePlayManager.Ins.Show(UIGamePlayManager.Ins._uiSettingDialog);
+        UIGamePlayManager.Ins.Show(UIGamePlayManager.Ins.UISettingDialog);
     }
-    private void ExitPause()
+    private void BtnPause()
     {
         UIGamePlayManager.Ins.Close(gameObject);
         SceneController.Ins.LoadScene(GameScene.MainMenu.ToString());

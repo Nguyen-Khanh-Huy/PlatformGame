@@ -6,6 +6,7 @@ public class CollectableBullet : Collectable
 {
     protected override void TriggerHandle()
     {
+        AudioManager.Ins.PlaySFX(AudioManager.Ins.SfxCollectBullet);
         PlayerManager.Ins.bullet++;
         GameData.Ins.SaveGame();
     }

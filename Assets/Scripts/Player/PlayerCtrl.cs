@@ -13,8 +13,6 @@ public abstract class PlayerCtrl : Singleton<PlayerCtrl>
     [SerializeField] protected CapsuleCollider2D _colFly;
     [SerializeField] protected CapsuleCollider2D _colWater;
 
-    [SerializeField] protected PlayerSO _playerSO;
-
     [SerializeField] protected int _curHp;
     [SerializeField] protected float _speedCur;
     [SerializeField] protected float _startGravity;
@@ -31,14 +29,17 @@ public abstract class PlayerCtrl : Singleton<PlayerCtrl>
     protected virtual void Start()
     {
         _startGravity = _rb.gravityScale;
-        _speedCur = _playerSO.SpeedMove;
+        _speedCur = PlayerManager.Ins.PlayerSO.SpeedMove;
+        if(_curHp == 0)
+        {
+            PlayerManager.Ins.hp = PlayerManager.Ins.PlayerSO.Hp;
+            GameData.Ins.SaveGame();
+        }
         _curHp = PlayerManager.Ins.hp;
-        LevelManager.Ins.gamePlayTime = 0f;
-        LevelManager.Ins.checkPlayTime = true;
     }
     protected virtual void Update()
     {
-        CheckDead();
+        
     }
     protected virtual void FixedUpdate()
     {
@@ -110,28 +111,38 @@ public abstract class PlayerCtrl : Singleton<PlayerCtrl>
         if (_isDead) return;
         _curHp -= dmg;
         PlayerManager.Ins.hp = _curHp;
+        AudioManager.Ins.PlaySFX(AudioManager.Ins.SfxGetHit);
         if (_curHp <= 0)
         {
-            if (PlayerManager.Ins.life >= 0)
+            if (PlayerManager.Ins.life > 0)
             {
-                _curHp = _playerSO.Hp;
+                _curHp = PlayerManager.Ins.PlayerSO.Hp;
                 PlayerManager.Ins.hp = _curHp;
                 PlayerManager.Ins.life--;
+                PlayerManager.Ins.Revival();
             }
             else
             {
                 _curHp = 0;
                 PlayerManager.Ins.hp = _curHp;
-                _isDead = true;
+                Death();
             }
         }
         GameData.Ins.SaveGame();
     }
-    protected virtual void CheckDead()
+    protected virtual void Death()
     {
-        if(!_isDead) return;
+        _isDead = true;
         gameObject.layer = LayerMask.NameToLayer("Dead");
         _rb.velocity = Vector2.zero;
         ChangeState(PlayerState.Dead);
+
+        AudioManager.Ins.PlaySFX(AudioManager.Ins.SfxDeadPlayer);
+        StartCoroutine(LevelFailDialog());
+    }
+    private IEnumerator LevelFailDialog()
+    {
+        yield return new WaitForSeconds(1);
+        UIGamePlayManager.Ins.Show(UIGamePlayManager.Ins.UILevelFailDialog);
     }
 }

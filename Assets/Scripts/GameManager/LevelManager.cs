@@ -82,4 +82,14 @@ public class LevelManager : Singleton<LevelManager>
     //      GameData.Ins.SaveGame();
     //    }
     //}
+    public void LevelFail()
+    {
+        PlayerCtrl.Ins.CurHp = PlayerManager.Ins.PlayerSO.Hp;
+        PlayerManager.Ins.hp = PlayerCtrl.Ins.CurHp;
+        GameData.Ins.SaveGame();
+    }
+    public void BackToCheckPoint()
+    {
+        PlayerCtrl.Ins.transform.position = checkPoints[levelId];
+    }
 }

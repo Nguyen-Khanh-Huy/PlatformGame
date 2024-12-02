@@ -64,12 +64,12 @@ public class PlayerData
 [System.Serializable]
 public class AudioData
 {
-    public float musicVol;
-    public float soundVol;
-    public AudioData(float musicVol, float soundVol)
+    public float VolumeMusic;
+    public float VolumeSFX;
+    public AudioData(float VolumeMusic, float VolumeSFX)
     {
-        this.musicVol = musicVol;
-        this.soundVol = soundVol;
+        this.VolumeMusic = VolumeMusic;
+        this.VolumeSFX = VolumeSFX;
     }
 }
 

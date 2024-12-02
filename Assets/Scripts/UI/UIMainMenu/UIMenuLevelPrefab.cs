@@ -16,11 +16,12 @@ public class UIMenuLevelPrefab : MonoBehaviour
         levelItem.ImgLevelPb.sprite = LevelManager.Ins.levelItems[levelIdx].imageLevel;
         levelItem.CheckLockPb.SetActive(!LevelManager.Ins.levelUnlockeds[levelIdx]);
         levelItem.CheckPassedPb.SetActive(LevelManager.Ins.levelPasseds[levelIdx]);
-        levelItem.BtnLevelPb.onClick.AddListener(() => ButtonAction(levelIdx));
+        levelItem.BtnLevelPb.onClick.AddListener(() => BtnAction(levelIdx));
     }
-    private void ButtonAction(int idx)
+    private void BtnAction(int idx)
     {
         if (!LevelManager.Ins.levelUnlockeds[idx]) return;
+        AudioManager.Ins.PlaySFX(AudioManager.Ins.SfxBtnClick);
         LevelManager.Ins.levelId = idx;
         GameData.Ins.SaveGame();
         SceneController.Ins.LoadLevelScene(LevelManager.Ins.levelId);

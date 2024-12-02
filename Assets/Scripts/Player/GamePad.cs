@@ -40,9 +40,9 @@ public class GamePad : Singleton<GamePad>
     private void Start()
     {
         if (IsOnMobile)
-        {UIGamePlayManager.Ins._uiMobileGamepad.SetActive(true);}
+        {UIGamePlayManager.Ins.UIMobileGamepad.SetActive(true);}
         else
-        {UIGamePlayManager.Ins._uiMobileGamepad.SetActive(false);}
+        {UIGamePlayManager.Ins.UIMobileGamepad.SetActive(false);}
     }
     private void Update()
     {

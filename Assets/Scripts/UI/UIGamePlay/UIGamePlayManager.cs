@@ -6,9 +6,11 @@ using UnityEngine.UI;
 
 public class UIGamePlayManager : Singleton<UIGamePlayManager>
 {
-    public GameObject _uiMobileGamepad;
-    public GameObject _uiSettingDialog;
-    public GameObject _uiPauseDialog;
+    public GameObject UIMobileGamepad;
+    public GameObject UISettingDialog;
+    public GameObject UIPauseDialog;
+    public GameObject UILevelPassedDialog;
+    public GameObject UILevelFailDialog;
 
     [SerializeField] private Button _btnPause;
 
@@ -25,7 +27,11 @@ public class UIGamePlayManager : Singleton<UIGamePlayManager>
     }
     private void Start()
     {
-        _btnPause.onClick.AddListener(() => Show(_uiPauseDialog));
+        AudioManager.Ins.PlayMusic(AudioManager.Ins.MusicGamePlay);
+        LevelManager.Ins.gamePlayTime = 0f;
+        LevelManager.Ins.checkPlayTime = true;
+
+        _btnPause.onClick.AddListener(() => Show(UIPauseDialog));
     }
     private void Update()
     {
@@ -41,12 +47,25 @@ public class UIGamePlayManager : Singleton<UIGamePlayManager>
     }
     public void Show(GameObject obj)
     {
+        if(obj == UILevelPassedDialog)
+        {
+            AudioManager.Ins.PlaySFX(AudioManager.Ins.SfxLevelPassed);
+        }
+        else if(obj == UILevelFailDialog)
+        {
+            AudioManager.Ins.PlaySFX(AudioManager.Ins.SfxLevelFail);
+        }
+        else
+        {
+            AudioManager.Ins.PlaySFX(AudioManager.Ins.SfxBtnClick);
+        }
         obj.SetActive(true);
-        Time.timeScale = 0f;
+        LevelManager.Ins.checkPlayTime = false;
     }
     public void Close(GameObject obj)
     {
         obj.SetActive(false);
-        Time.timeScale = 1f;
+        AudioManager.Ins.PlaySFX(AudioManager.Ins.SfxBtnClick);
+        LevelManager.Ins.checkPlayTime = true;
     }
 }

@@ -23,7 +23,7 @@ public class PlayerHammer : MonoBehaviour
             _offset.x = _offset.x < 0f ? -_offset.x : _offset.x;
         }
     }
-    private void HammerAttack()
+    private void EventHammerAttack()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position + _offset, 1f, LayerMask.GetMask("Enemy"));
         foreach (Collider2D col in colliders)
@@ -38,6 +38,11 @@ public class PlayerHammer : MonoBehaviour
                 }
             }
         }
+        AudioManager.Ins.PlaySFX(AudioManager.Ins.SfxAttack);
+    }
+    private void EventSfxWalk()
+    {
+        AudioManager.Ins.PlaySFX(AudioManager.Ins.SfxWalk);
     }
     //private void OnDrawGizmos()
     //{

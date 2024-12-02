@@ -22,6 +22,7 @@ public class PlayerShootBullet : MonoBehaviour
     {
         var bulletClone = Instantiate(_bulletPrefab, new Vector2(_firePoint.position.x + _offset, _firePoint.position.y), Quaternion.identity);
         bulletClone.DirBullet = _curDirBullet;
+        AudioManager.Ins.PlaySFX(AudioManager.Ins.SfxFireBullet);
     }
     //private void OnDrawGizmos()
     //{

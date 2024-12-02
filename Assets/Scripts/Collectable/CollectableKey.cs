@@ -6,6 +6,7 @@ public class CollectableKey : Collectable
 {
     protected override void TriggerHandle()
     {
+        AudioManager.Ins.PlaySFX(AudioManager.Ins.SfxCollectKey);
         PlayerManager.Ins.key++;
         GameData.Ins.SaveGame();
     }
