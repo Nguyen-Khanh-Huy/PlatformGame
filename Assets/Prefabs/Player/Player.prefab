@@ -274,7 +274,6 @@ MonoBehaviour:
   _colDefaul: {fileID: 5974523064571170041}
   _colFly: {fileID: 1585437074361666029}
   _colWater: {fileID: 8981575243581604013}
-  _playerSO: {fileID: 11400000, guid: a9145955372a68947b6353ed18af9033, type: 2}
   _curHp: 0
   _speedCur: 0
   _startGravity: 0

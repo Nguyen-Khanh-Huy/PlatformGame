@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerShootBullet : MonoBehaviour
+public class PlayerFireBullet: MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _sp;
     [SerializeField] private Bullet _bulletPrefab;
@@ -18,10 +18,12 @@ public class PlayerShootBullet : MonoBehaviour
         _curDirBullet = _sp.flipX ? -1 : 1;
         _offset = _sp.flipX ? -1.3f : 0f;
     }
-    private void ShootBulletPrb()
+    private void FireBulletPrb()
     {
         var bulletClone = Instantiate(_bulletPrefab, new Vector2(_firePoint.position.x + _offset, _firePoint.position.y), Quaternion.identity);
         bulletClone.DirBullet = _curDirBullet;
+        PlayerManager.Ins.bullet--;
+        GameData.Ins.SaveGame();
         AudioManager.Ins.PlaySFX(AudioManager.Ins.SfxFireBullet);
     }
     //private void OnDrawGizmos()

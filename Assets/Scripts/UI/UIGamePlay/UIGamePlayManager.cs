@@ -40,18 +40,15 @@ public class UIGamePlayManager : Singleton<UIGamePlayManager>
         _txtCoin.text = PlayerManager.Ins.coin.ToString();
         _txtKey.text = PlayerManager.Ins.key.ToString();
         _txtTime.text = LevelManager.Ins.TimeConvert(LevelManager.Ins.gamePlayTime);
-        if (GamePad.Ins.IsOnMobile)
-        {
-            _txtBullet.text = PlayerManager.Ins.bullet.ToString();
-        }
+        _txtBullet.text = PlayerManager.Ins.bullet.ToString();
     }
     public void Show(GameObject obj)
     {
-        if(obj == UILevelPassedDialog)
+        if (obj == UILevelPassedDialog)
         {
             AudioManager.Ins.PlaySFX(AudioManager.Ins.SfxLevelPassed);
         }
-        else if(obj == UILevelFailDialog)
+        else if (obj == UILevelFailDialog)
         {
             AudioManager.Ins.PlaySFX(AudioManager.Ins.SfxLevelFail);
         }
