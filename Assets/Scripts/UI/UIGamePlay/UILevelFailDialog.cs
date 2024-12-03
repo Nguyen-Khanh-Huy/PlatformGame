@@ -20,12 +20,9 @@ public class UILevelFailDialog : MonoBehaviour
     }
     private void Update()
     {
-        if (gameObject.activeSelf)
-        {
-            _txtTime.text = LevelManager.Ins.TimeConvert(LevelManager.Ins.gamePlayTime);
-            _txtKey.text = PlayerManager.Ins.key.ToString();
-            _txtCoin.text = PlayerManager.Ins.coin.ToString();
-        }
+        _txtTime.text = LevelManager.Ins.TimeConvert(LevelManager.Ins.gamePlayTime);
+        _txtKey.text = PlayerManager.Ins.key.ToString();
+        _txtCoin.text = PlayerManager.Ins.coin.ToString();
     }
     private void BtnReplay()
     {

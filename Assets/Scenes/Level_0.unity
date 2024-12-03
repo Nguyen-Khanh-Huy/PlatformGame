@@ -1762,7 +1762,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: x10000
+  m_text: x100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 25c7733e3a51f574e95c80b9b9ab5817, type: 2}
   m_sharedMaterial: {fileID: -6353638383446376882, guid: 25c7733e3a51f574e95c80b9b9ab5817, type: 2}
@@ -4013,15 +4013,15 @@ RectTransform:
   m_Children:
   - {fileID: 1696993841}
   - {fileID: 1503034085}
-  - {fileID: 1353703830}
   - {fileID: 1221970770}
   - {fileID: 287439369}
   - {fileID: 1852335790}
+  - {fileID: 1353703830}
   m_Father: {fileID: 1666876534}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 790, y: 0}
+  m_AnchoredPosition: {x: 715, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &723278248
@@ -4067,7 +4067,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 180, y: 40}
-  m_Spacing: {x: 100, y: 0}
+  m_Spacing: {x: 70, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 6
 --- !u!1 &743161135
@@ -4579,10 +4579,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4c437310c764d4fa4b1bb3fa68bcf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _btnAttack: {fileID: 1406217528}
-  _btnFireBullet: {fileID: 1810916661}
-  _btnFly: {fileID: 281313842}
-  _btnJump: {fileID: 1324334277}
   _txtBulletCount: {fileID: 896270599}
 --- !u!1 &896270597
 GameObject:
@@ -4821,7 +4817,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: x10000
+  m_text: x100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 25c7733e3a51f574e95c80b9b9ab5817, type: 2}
   m_sharedMaterial: {fileID: -6353638383446376882, guid: 25c7733e3a51f574e95c80b9b9ab5817, type: 2}
@@ -5799,7 +5795,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: x10000
+  m_text: x100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 25c7733e3a51f574e95c80b9b9ab5817, type: 2}
   m_sharedMaterial: {fileID: -6353638383446376882, guid: 25c7733e3a51f574e95c80b9b9ab5817, type: 2}
@@ -8245,7 +8241,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: x10000
+  m_text: x100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 25c7733e3a51f574e95c80b9b9ab5817, type: 2}
   m_sharedMaterial: {fileID: -6353638383446376882, guid: 25c7733e3a51f574e95c80b9b9ab5817, type: 2}
@@ -8366,7 +8362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5c4a16672ef27e4d94b289704044aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsOnMobile: 1
+  IsOnMobile: 0
   Joystick: {fileID: 1934296565}
 --- !u!1 &1609097184
 GameObject:
@@ -10588,6 +10584,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511b745866b5d5f47b3a60f2dc5413a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _star:
+  - {fileID: 1537385150}
+  - {fileID: 376074637}
+  - {fileID: 1433982265}
+  _activeStar: {fileID: 1763049777, guid: d9c176818c008ce40909f024de8e52b1, type: 3}
+  _unactiveStar: {fileID: -1662729855, guid: d9c176818c008ce40909f024de8e52b1, type: 3}
+  _btnReplay: {fileID: 339658901}
+  _btnNextLevel: {fileID: 1445644677}
+  _txtLife: {fileID: 2068086546}
+  _txtHp: {fileID: 52225593}
+  _txtTime: {fileID: 667545539}
+  _txtCoin: {fileID: 710717407}
 --- !u!1 &2122994847
 GameObject:
   m_ObjectHideFlags: 0
@@ -10645,7 +10653,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: x10000
+  m_text: x100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 25c7733e3a51f574e95c80b9b9ab5817, type: 2}
   m_sharedMaterial: {fileID: -6353638383446376882, guid: 25c7733e3a51f574e95c80b9b9ab5817, type: 2}

@@ -19,3 +19,5 @@ MonoBehaviour:
   SpeedFly: 2
   SpeedLadder: 2
   SpeedSwim: 2
+  KnockBackTime: 0.2
+  KnockBackForce: 6

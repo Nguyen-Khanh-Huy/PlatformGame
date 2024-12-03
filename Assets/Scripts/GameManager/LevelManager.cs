@@ -88,6 +88,29 @@ public class LevelManager : Singleton<LevelManager>
         PlayerManager.Ins.hp = PlayerCtrl.Ins.CurHp;
         GameData.Ins.SaveGame();
     }
+    public void LevelPassedWhenOpenDoor()
+    {
+        checkPlayTime = false;
+        SaveGamePlayTime();
+    }
+    public void LevelPassedWhenCloseDoor()
+    {
+        checkPlayTime = false;
+        levelPasseds[levelId] = true;
+        levelUnlockeds[levelId + 1] = true;
+        SaveGamePlayTime();
+    }
+    public void SaveGamePlayTime()
+    {
+        if (completeTimes[levelId] == 0f || completeTimes[levelId] > gamePlayTime)
+        {
+            completeTimes[levelId] = gamePlayTime;
+        }
+    }
+    public int GetStar()
+    {
+        return levelItems[levelId].starLevel.GetStar(Mathf.RoundToInt(gamePlayTime));
+    }
     public void BackToCheckPoint()
     {
         PlayerCtrl.Ins.transform.position = checkPoints[levelId];

@@ -15,4 +15,6 @@ public class PlayerSO : ScriptableObject
     public float SpeedFly;
     public float SpeedLadder;
     public float SpeedSwim;
+    public float KnockBackTime;
+    public float KnockBackForce;
 }

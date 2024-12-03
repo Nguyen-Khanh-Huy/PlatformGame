@@ -151,18 +151,13 @@ MonoBehaviour:
   _col: {fileID: 2150452700039199412}
   _player: {fileID: 0}
   _enemySO: {fileID: 11400000, guid: 0999ef4c2b66c1946b54a4a11b72e091, type: 2}
+  _vfx: {fileID: 4331484136183913785, guid: e079b33e1a72ce44d9e5765523dbe091, type: 3}
+  _curHp: 0
   _speedCur: 0
   _speedMove: 1.5
   _movingDist: 3
   _target: {x: 0, y: 0, z: 0}
   _canRotation: 1
-  _newPos: 0
-  _posXLeft: 0
-  _posXRight: 0
-  _posYUp: 0
-  _posYDown: 0
-  randomX: 0
-  randomY: 0
 --- !u!1 &8911598730517229567
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class EnemyMovingLine : Enemy
     private Vector3 _posXRight;
     private Vector3 _posYUp;
     private Vector3 _posYDown;
-    private float _timeCheckCol = 0f;
+    private float _timeCheckTarget = 0f;
     [SerializeField] private bool _noTarger;
     protected override void Start()
     {
@@ -19,7 +19,7 @@ public class EnemyMovingLine : Enemy
     protected override void Update()
     {
         if (_noTarger) return;
-        _timeCheckCol += Time.deltaTime;
+        _timeCheckTarget += Time.deltaTime;
     }
     protected override void Move()
     {
@@ -83,8 +83,9 @@ public class EnemyMovingLine : Enemy
         Player _player = collision.collider.GetComponent<Player>();
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            _player.TakeDamagePlayer(_enemySO.Damage);
-            _timeCheckCol = 0f;
+            Vector2 dirKnockBack = (_player.transform.position - transform.position).normalized;
+            _player.TakeDamagePlayer(_enemySO.Damage, dirKnockBack);
+            _timeCheckTarget = 0f;
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -92,7 +93,7 @@ public class EnemyMovingLine : Enemy
         if (_noTarger) return;
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            if (_timeCheckCol < 0.5f)
+            if (_timeCheckTarget < 0.5f)
             {
                 _target = Vector3.Distance(collision.transform.position, _posXLeft) < Vector3.Distance(transform.position, _posXLeft) ? _posXRight : _posXLeft;
             }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyMovingFree : Enemy
@@ -11,7 +12,7 @@ public class EnemyMovingFree : Enemy
     private float _posXRight;
     private float _posYUp;
     private float _posYDown;
-    private float _timeCheckCol = 0f;
+    private float _timeCheckTarget = 0f;
 
     protected override void Start()
     {
@@ -20,7 +21,7 @@ public class EnemyMovingFree : Enemy
     }
     protected override void Update()
     {
-        _timeCheckCol += Time.deltaTime;
+        _timeCheckTarget += Time.deltaTime;
     }
     protected override void Move()
     {
@@ -51,10 +52,14 @@ public class EnemyMovingFree : Enemy
             CheckFlipY(_rb.velocity.x < 0f);
             RotateToTarget(); 
         }
-        else { CheckFlipX(_rb.velocity.x < 0f); }
+        else 
+        { 
+            CheckFlipX(_rb.velocity.x < 0f); 
+        }
 
         _direction = _target - transform.position;
         _direction.Normalize();
+
         if (_knockBack) return;
         _rb.velocity = _direction * _speedCur;
     }
@@ -75,15 +80,16 @@ public class EnemyMovingFree : Enemy
         Player _player = collision.collider.GetComponent<Player>();
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            _player.TakeDamagePlayer(_enemySO.Damage);
-            _timeCheckCol = 0f;
+            Vector2 dirKnockBack = (_player.transform.position - transform.position).normalized;
+            _player.TakeDamagePlayer(_enemySO.Damage, dirKnockBack);
+            _timeCheckTarget = 0f;
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            if (_timeCheckCol >= 1f)
+            if (_timeCheckTarget >= 1f)
             {
                 _target = collision.transform.position;
                 _newPos = false;

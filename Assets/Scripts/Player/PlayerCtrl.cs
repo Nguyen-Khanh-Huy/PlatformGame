@@ -16,9 +16,11 @@ public abstract class PlayerCtrl : Singleton<PlayerCtrl>
     [SerializeField] protected int _curHp;
     [SerializeField] protected float _speedCur;
     [SerializeField] protected float _startGravity;
+    [SerializeField] protected bool _knockBack;
     [SerializeField] protected bool _isDead;
 
-    protected int hoz, vert;
+    protected int _hoz, _vert;
+    protected bool _checkDoor;
     public int CurHp { get => _curHp; set => _curHp = value; }
     public bool IsDead { get => _isDead; set => _isDead = value; }
 
@@ -77,11 +79,13 @@ public abstract class PlayerCtrl : Singleton<PlayerCtrl>
     }
     protected virtual void MoveFly()
     {
-        hoz = GamePad.Ins.CanMoveLeft ? -1 : GamePad.Ins.CanMoveRight ? 1 : 0;
-        if (hoz != 0)
+        if (_knockBack) return;
+        
+        _hoz = GamePad.Ins.CanMoveLeft ? -1 : GamePad.Ins.CanMoveRight ? 1 : 0;
+        if (_hoz != 0)
         {
-            _rb.velocity = new Vector2(hoz * (_speedCur + 3), -_speedCur);
-            CheckFlip(hoz < 0);
+            CheckFlip(_hoz < 0);
+            _rb.velocity = new Vector2(_hoz * (_speedCur + 3), -_speedCur);
         }
         else
         {
@@ -90,23 +94,41 @@ public abstract class PlayerCtrl : Singleton<PlayerCtrl>
     }
     protected virtual void MoveFull()
     {
-        hoz = GamePad.Ins.CanMoveLeft ? -1 : GamePad.Ins.CanMoveRight ? 1 : 0;
-        vert = GamePad.Ins.CanMoveDown ? -1 : GamePad.Ins.CanMoveUp ? 1 : 0;
-        if (hoz != 0)
+        if (_knockBack) return;
+
+        _hoz = GamePad.Ins.CanMoveLeft ? -1 : GamePad.Ins.CanMoveRight ? 1 : 0;
+        _vert = GamePad.Ins.CanMoveDown ? -1 : GamePad.Ins.CanMoveUp ? 1 : 0;
+        if (_hoz != 0)
         {
-            _rb.velocity = new Vector2(hoz * _speedCur, _rb.velocity.y);
-            CheckFlip(hoz < 0);
+            CheckFlip(_hoz < 0);
+            _rb.velocity = new Vector2(_hoz * _speedCur, _rb.velocity.y);
         }
-        if (vert != 0)
+        if (_vert != 0)
         {
-            _rb.velocity = new Vector2(_rb.velocity.x, vert * _speedCur);
+            _rb.velocity = new Vector2(_rb.velocity.x, _vert * _speedCur);
         }
-        else if (hoz != 0 && Obs.IsOnWaterDeep)
+        else if (_hoz != 0 && Obs.IsOnWaterDeep)
         {
             _rb.velocity = new Vector2(_rb.velocity.x, 0);
         }
     }
-    public virtual void TakeDamagePlayer(int dmg)
+    public virtual void IsIdle()
+    {
+        if (_knockBack) return;
+        _rb.velocity = Vector2.zero;
+    }
+    public virtual void PlayerCheckDoor()
+    {
+        _checkDoor = true;
+        IsIdle();
+        ChangeState(PlayerState.SayHello);
+    }
+    private IEnumerator KnockbackEffect()
+    {
+        yield return new WaitForSeconds(PlayerManager.Ins.PlayerSO.KnockBackTime);
+        _knockBack = false;
+    }
+    public virtual void TakeDamagePlayer(int dmg, Vector2 attackDir)
     {
         if (_isDead) return;
         _curHp -= dmg;
@@ -129,12 +151,19 @@ public abstract class PlayerCtrl : Singleton<PlayerCtrl>
             }
         }
         GameData.Ins.SaveGame();
+
+        _knockBack = true;
+        if (_knockBack)
+        {
+            _rb.velocity = Vector2.zero;
+            _rb.AddForce(attackDir * PlayerManager.Ins.PlayerSO.KnockBackForce, ForceMode2D.Impulse);
+            StartCoroutine(KnockbackEffect());
+        }
     }
     protected virtual void Death()
     {
         _isDead = true;
         gameObject.layer = LayerMask.NameToLayer("Dead");
-        _rb.velocity = Vector2.zero;
         ChangeState(PlayerState.Dead);
 
         AudioManager.Ins.PlaySFX(AudioManager.Ins.SfxDeadPlayer);

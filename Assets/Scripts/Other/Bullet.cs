@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -18,8 +19,8 @@ public class Bullet : MonoBehaviour
         Enemy _enemy = collision.collider.GetComponent<Enemy>();
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            Vector2 dir = collision.transform.position - transform.position;
-            _enemy.TakeDamageEnemy(_playerSO.Damage,dir);
+            Vector2 dirKnockBack = (collision.transform.position - transform.position).normalized;
+            _enemy.TakeDamageEnemy(_playerSO.Damage, dirKnockBack);
             Destroy(gameObject);
         }
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))

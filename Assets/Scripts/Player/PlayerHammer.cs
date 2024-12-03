@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class PlayerHammer : MonoBehaviour
 {
-    [SerializeField] private PlayerSO _playerSO;
     [SerializeField] private SpriteRenderer _sp;
     [SerializeField] private Vector3 _offset;
-    private Vector2 dir;
     private void Update()
     {
         CheckingOffset();
@@ -33,8 +31,8 @@ public class PlayerHammer : MonoBehaviour
                 Enemy _enemy = col.GetComponent<Enemy>();
                 if (_enemy != null)
                 {
-                    dir = _enemy.transform.position - transform.position;
-                    _enemy.TakeDamageEnemy(_playerSO.Damage, dir);
+                    Vector2 dirKnockBack = (_enemy.transform.position - transform.position).normalized;
+                    _enemy.TakeDamageEnemy(PlayerManager.Ins.PlayerSO.Damage, dirKnockBack);
                 }
             }
         }

@@ -11,7 +11,12 @@ public class Player : PlayerCtrl
     }
     protected override void Update()
     {
-        if (_isDead) return;
+        if (_isDead)
+        {
+            IsIdle();
+            return;
+        }
+        if (_checkDoor) return;
 
         JumpCheck();
         FlyAndOnAirCheck();
@@ -102,10 +107,12 @@ public class Player : PlayerCtrl
             if (GamePad.Ins.CanAttack)
             {
                 ChangeState(PlayerState.Attack);
+                GamePad.Ins.CanAttack = false;
             }
             else if (GamePad.Ins.CanBullet && PlayerManager.Ins.bullet > 0)
             {
                 ChangeState(PlayerState.Bullet);
+                GamePad.Ins.CanBullet = false;
             }
             else if (!_checkLandAndJump)
             {
@@ -115,10 +122,10 @@ public class Player : PlayerCtrl
                 ChangeState(PlayerState.Land);
                 AudioManager.Ins.PlaySFX(AudioManager.Ins.SfxLand);
             }
-            else if (GamePad.Ins.IsStatic || (_anim.GetInteger("State") == (int)PlayerState.Land) && GamePad.Ins.CanJumpHolding)
+            else if (GamePad.Ins.IsIdle || (_anim.GetInteger("State") == (int)PlayerState.Land) && GamePad.Ins.CanJumpHolding)
             {
-                _rb.velocity = Vector2.zero;
                 ChangeState(PlayerState.Idle);
+                IsIdle();
             }
             else if (GamePad.Ins.CanMoveLeft || GamePad.Ins.CanMoveRight)
             {
@@ -143,7 +150,7 @@ public class Player : PlayerCtrl
             {
                 ChangeState(PlayerState.Bullet);
             }
-            else if (GamePad.Ins.IsStatic)
+            else if (GamePad.Ins.IsIdle)
             {
                 ChangeState(PlayerState.LadderIdle);
             }
@@ -168,7 +175,10 @@ public class Player : PlayerCtrl
             {
                 MoveFull();
             }
-            else if (GamePad.Ins.IsStatic) { _rb.velocity = Vector2.zero; }
+            else if (GamePad.Ins.IsIdle) 
+            { 
+                IsIdle(); 
+            }
         }
         else if (Obs.IsOnWaterDeep)
         {
@@ -182,7 +192,10 @@ public class Player : PlayerCtrl
             {
                 MoveFull();
             }
-            else { _rb.velocity = Vector2.zero; }
+            else 
+            { 
+                IsIdle(); 
+            }
         }
     }
 }

@@ -29,7 +29,7 @@ public class GamePad : Singleton<GamePad>
     public bool CanBullet { get => _canBullet; set => _canBullet = value; }
     public bool CanAttack { get => _canAttack; set => _canAttack = value; }
 
-    public bool IsStatic
+    public bool IsIdle
     {
         get => !_canMoveLeft && !_canMoveRight && !_canMoveUp && !_canMoveDown && !_canJump && !_canFly && !_canJumpHolding;
     }

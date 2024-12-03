@@ -151,12 +151,12 @@ MonoBehaviour:
   _col: {fileID: -566817924235888077}
   _player: {fileID: 0}
   _enemySO: {fileID: 11400000, guid: 0999ef4c2b66c1946b54a4a11b72e091, type: 2}
+  _vfx: {fileID: 4331484136183913785, guid: e079b33e1a72ce44d9e5765523dbe091, type: 3}
   _curHp: 0
   _speedCur: 0
   _speedMove: 1.5
   _movingDist: 5
   _target: {x: 0, y: 0, z: 0}
-  _knockBack: 0
   _enemyDir: 2
   _noTarger: 0
 --- !u!1 &730065699354025608

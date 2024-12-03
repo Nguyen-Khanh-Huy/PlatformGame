@@ -257,6 +257,7 @@ MonoBehaviour:
   _col: {fileID: 3917585716372464111}
   _player: {fileID: 0}
   _enemySO: {fileID: 11400000, guid: 0999ef4c2b66c1946b54a4a11b72e091, type: 2}
+  _vfx: {fileID: 4331484136183913785, guid: e079b33e1a72ce44d9e5765523dbe091, type: 3}
   _curHp: 0
   _speedCur: 0
   _speedMove: 1.5

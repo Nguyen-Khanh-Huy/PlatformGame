@@ -10,6 +10,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected CapsuleCollider2D _col;
     [SerializeField] protected Transform _player;
     [SerializeField] protected EnemySO _enemySO;
+    [SerializeField] private GameObject _vfx;
 
     [SerializeField] protected int _curHp;
     [SerializeField] protected float _speedCur;
@@ -82,7 +83,6 @@ public abstract class Enemy : MonoBehaviour
     {
         if (_isDead) return;
         AudioManager.Ins.PlaySFX(AudioManager.Ins.SfxGetHit);
-        _knockBack = true;
         if (_curHp > 0)
         {
             _curHp -= dmg;
@@ -92,10 +92,11 @@ public abstract class Enemy : MonoBehaviour
                 Death();
             }
         }
+        _knockBack = true;
         if (_knockBack)
         {
             _rb.velocity = Vector2.zero;
-            _rb.AddForce(attackDir.normalized * _enemySO.KnockBackForce, ForceMode2D.Impulse);
+            _rb.AddForce(attackDir * _enemySO.KnockBackForce, ForceMode2D.Impulse);
             StartCoroutine(KnockbackEffect());
         }
     }
@@ -104,7 +105,13 @@ public abstract class Enemy : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Dead");
         _rb.velocity = Vector2.zero;
         AudioManager.Ins.PlaySFX(AudioManager.Ins.SfxDeadEnemy);
-        Destroy(gameObject, 0.1f);
+        Destroy(gameObject);
+        Vfx();
         _isDead = true;
+    }
+    protected virtual void Vfx()
+    {
+        _vfx = Instantiate(_vfx, transform.position, Quaternion.identity);
+        Destroy(_vfx, 0.5f);
     }
 }
