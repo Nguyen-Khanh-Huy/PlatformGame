@@ -7,19 +7,18 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected Animator _anim;
     [SerializeField] protected SpriteRenderer _sp;
     [SerializeField] protected Rigidbody2D _rb;
-    [SerializeField] protected CapsuleCollider2D _col;
+    [SerializeField] protected Collider2D _col;
     [SerializeField] protected Transform _player;
     [SerializeField] protected EnemySO _enemySO;
     [SerializeField] private GameObject _vfx;
 
     [SerializeField] protected int _curHp;
-    [SerializeField] protected float _speedCur;
+    protected float _speedCur;
     [SerializeField] protected float _speedMove;
     [SerializeField] protected float _movingDist;
-
     [SerializeField] protected Vector3 _target;
+    
     protected bool _knockBack;
-    protected bool _isDead;
     protected Vector3 _startPosition;
     protected Vector3 _direction;
 
@@ -27,6 +26,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Start()
     {
+        Door door = GameObject.Find("DoorLock").GetComponent<Door>();
         _player = GameObject.Find("Player").transform;
         _curHp = _enemySO.Hp;
         _startPosition = transform.position;
@@ -38,7 +38,7 @@ public abstract class Enemy : MonoBehaviour
     }
     protected virtual void FixedUpdate()
     {
-        if (_isDead) return;
+        if (PlayerCtrl.Ins.IsDead) return;
         Move();
     }
     protected virtual void ChangeState(EnemyState State)
@@ -81,7 +81,6 @@ public abstract class Enemy : MonoBehaviour
     }
     public virtual void TakeDamageEnemy(int dmg, Vector2 attackDir)
     {
-        if (_isDead) return;
         AudioManager.Ins.PlaySFX(AudioManager.Ins.SfxGetHit);
         if (_curHp > 0)
         {
@@ -102,12 +101,9 @@ public abstract class Enemy : MonoBehaviour
     }
     protected virtual void Death()
     {
-        gameObject.layer = LayerMask.NameToLayer("Dead");
-        _rb.velocity = Vector2.zero;
         AudioManager.Ins.PlaySFX(AudioManager.Ins.SfxDeadEnemy);
         Destroy(gameObject);
         Vfx();
-        _isDead = true;
     }
     protected virtual void Vfx()
     {

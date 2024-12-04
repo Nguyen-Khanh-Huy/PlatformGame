@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Collectable : MonoBehaviour
 {
+    [SerializeField] private GameObject _vfx;
     protected abstract void TriggerHandle();
     private void Start()
     {
@@ -11,16 +12,21 @@ public abstract class Collectable : MonoBehaviour
     }
     protected void DestroyWhenLevelPassed()
     {
-        //if (GameData.Ins.IsLevelPassed(LevelManager.Ins.CurLevelId))
-        //{
-        //    Destroy(gameObject);
-        //}
+        if (LevelManager.Ins.levelPasseds[LevelManager.Ins.levelId])
+        {
+            Destroy(gameObject);
+        }
+    }
+    protected virtual void Vfx()
+    {
+        _vfx = Instantiate(_vfx, transform.position, Quaternion.identity);
+        Destroy(_vfx, 0.5f);
     }
     public void Trigger()
     {
         TriggerHandle();
         Destroy(gameObject);
-        // vfx
+        Vfx();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

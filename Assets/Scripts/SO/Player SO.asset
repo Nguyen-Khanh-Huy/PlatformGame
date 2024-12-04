@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Hp: 3
   Damage: 1
-  JumpForce: 11
+  JumpForce: 12
   SpeedMove: 4
   SpeedFly: 2
   SpeedLadder: 2

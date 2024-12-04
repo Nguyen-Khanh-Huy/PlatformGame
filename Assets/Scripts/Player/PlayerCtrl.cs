@@ -22,7 +22,7 @@ public abstract class PlayerCtrl : Singleton<PlayerCtrl>
     protected int _hoz, _vert;
     protected bool _checkDoor;
     public int CurHp { get => _curHp; set => _curHp = value; }
-    public bool IsDead { get => _isDead; set => _isDead = value; }
+    public bool IsDead { get => _isDead; }
 
     public override void Awake()
     {
