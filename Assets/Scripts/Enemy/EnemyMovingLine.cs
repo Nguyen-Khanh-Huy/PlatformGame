@@ -23,18 +23,20 @@ public class EnemyMovingLine : Enemy
     }
     protected override void Move()
     {
-        if(_target != _player.transform.position && _target != _posXLeft && _target != _posXRight && _target != _posYUp && _target != _posYDown) return;
+        if (_target != _player.transform.position && _target != _posXLeft && _target != _posXRight && _target != _posYUp && _target != _posYDown) return;
         if (_target == _player.transform.position)
         {
-            ChangeState(EnemyState.Chasing);
             _speedCur = _enemySO.SpeedChasing;
+            if (gameObject.name != "Fish_Vertical")
+            ChangeState(EnemyState.Chasing);
         }
         else
         {
-            ChangeState(EnemyState.Moving);
             _speedCur = _speedMove;
             _target = Vector3.Distance(transform.position, _posXLeft) < 0.5f ? _posXRight : Vector3.Distance(transform.position, _posXRight) < 0.5f ? _posXLeft : _target;
             _target = Vector3.Distance(transform.position, _posYUp) < 0.5f ? _posYDown : Vector3.Distance(transform.position, _posYDown) < 0.5f ? _posYUp : _target;
+            if (gameObject.name != "Fish_Vertical")
+            ChangeState(EnemyState.Moving);
         }
         _direction = _target - transform.position;
         _direction.Normalize();
@@ -42,10 +44,10 @@ public class EnemyMovingLine : Enemy
         {
             transform.position += _direction * _speedCur * Time.deltaTime;
         }
-        else 
-        { 
-            if(_knockBack) return;
-            _rb.velocity = _direction * _speedCur; 
+        else
+        {
+            if (_knockBack) return;
+            _rb.velocity = _direction * _speedCur;
         }
 
         CheckFlipX(_rb.velocity.x < 0f);
@@ -79,7 +81,6 @@ public class EnemyMovingLine : Enemy
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (_noTarger) return;
         Player _player = collision.collider.GetComponent<Player>();
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {

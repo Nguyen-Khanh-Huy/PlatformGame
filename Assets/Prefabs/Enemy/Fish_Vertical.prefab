@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c79a69fa2650584b84a25bb33d2828e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _anim: {fileID: 0}
+  _anim: {fileID: 255429920800318612}
   _sp: {fileID: 5001982772642360343}
   _rb: {fileID: -8131859197338535907}
   _col: {fileID: -1689795649079012113}
@@ -223,7 +223,6 @@ MonoBehaviour:
   _enemySO: {fileID: 11400000, guid: 0999ef4c2b66c1946b54a4a11b72e091, type: 2}
   _vfx: {fileID: 4331484136183913785, guid: e079b33e1a72ce44d9e5765523dbe091, type: 3}
   _curHp: 0
-  _speedCur: 0
   _speedMove: 5
   _movingDist: 3
   _target: {x: 0, y: 0, z: 0}

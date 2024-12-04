@@ -38,7 +38,11 @@ public abstract class Enemy : MonoBehaviour
     }
     protected virtual void FixedUpdate()
     {
-        if (PlayerCtrl.Ins.IsDead) return;
+        if (PlayerCtrl.Ins.IsDead)
+        {
+            PlayerDeath();
+            return;
+        }
         Move();
     }
     protected virtual void ChangeState(EnemyState State)
@@ -109,5 +113,12 @@ public abstract class Enemy : MonoBehaviour
     {
         _vfx = Instantiate(_vfx, transform.position, Quaternion.identity);
         Destroy(_vfx, 0.5f);
+    }
+    protected virtual void PlayerDeath()
+    {
+        _speedMove = 0;
+        _enemySO.SpeedChasing = 0;
+        _rb.velocity = Vector3.zero;
+        _rb.gravityScale = 0f;
     }
 }
