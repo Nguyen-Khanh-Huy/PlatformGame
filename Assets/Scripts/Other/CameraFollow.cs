@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    [SerializeField] private Player _player;
+    [SerializeField] private float _posX;
+    [SerializeField] private float _posY;
     private void Update()
     {
-        transform.position = new Vector3(_player.transform.position.x, _player.transform.position.y, transform.position.z);
+        transform.position = new Vector3(PlayerCtrl.Ins.transform.position.x + _posX, PlayerCtrl.Ins.transform.position.y + _posY, transform.position.z);
     }
 }
