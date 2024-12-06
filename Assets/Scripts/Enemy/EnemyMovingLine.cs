@@ -81,6 +81,7 @@ public class EnemyMovingLine : Enemy
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (_noTarger) return;
         Player _player = collision.collider.GetComponent<Player>();
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {

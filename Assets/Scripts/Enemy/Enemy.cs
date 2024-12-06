@@ -17,7 +17,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected float _speedMove;
     [SerializeField] protected float _movingDist;
     [SerializeField] protected Vector3 _target;
-    
+
     protected bool _knockBack;
     protected Vector3 _startPosition;
     protected Vector3 _direction;
@@ -40,7 +40,7 @@ public abstract class Enemy : MonoBehaviour
     {
         if (PlayerCtrl.Ins.IsDead)
         {
-            PlayerDeath();
+            StopMoving();
             return;
         }
         Move();
@@ -52,7 +52,7 @@ public abstract class Enemy : MonoBehaviour
     }
     protected void CheckFlipX(bool check)
     {
-        if(_col == null && _sp == null) return;
+        if (_col == null && _sp == null) return;
         if (check)
         {
             _sp.flipX = true;
@@ -114,11 +114,9 @@ public abstract class Enemy : MonoBehaviour
         _vfx = Instantiate(_vfx, transform.position, Quaternion.identity);
         Destroy(_vfx, 0.5f);
     }
-    protected virtual void PlayerDeath()
+    protected virtual void StopMoving()
     {
-        _speedMove = 0;
-        _enemySO.SpeedChasing = 0;
+        _speedCur = 0;
         _rb.velocity = Vector3.zero;
-        _rb.gravityScale = 0f;
     }
 }

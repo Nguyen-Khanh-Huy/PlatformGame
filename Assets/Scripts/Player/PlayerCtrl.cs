@@ -164,6 +164,7 @@ public abstract class PlayerCtrl : Singleton<PlayerCtrl>
     protected virtual void Death()
     {
         _isDead = true;
+        _rb.gravityScale = 0;
         gameObject.layer = LayerMask.NameToLayer("Dead");
         ChangeState(PlayerState.Dead);
 

@@ -16,8 +16,8 @@ MonoBehaviour:
   Damage: 1
   JumpForce: 12
   SpeedMove: 4
-  SpeedFly: 2
-  SpeedLadder: 2
-  SpeedSwim: 2
+  SpeedFly: 2.5
+  SpeedLadder: 2.5
+  SpeedSwim: 2.5
   KnockBackTime: 0.2
   KnockBackForce: 6
