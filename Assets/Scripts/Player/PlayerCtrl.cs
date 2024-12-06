@@ -23,6 +23,7 @@ public abstract class PlayerCtrl : Singleton<PlayerCtrl>
     protected bool _checkDoor;
     public int CurHp { get => _curHp; set => _curHp = value; }
     public bool IsDead { get => _isDead; }
+    public Rigidbody2D Rb { get => _rb; }
 
     public override void Awake()
     {

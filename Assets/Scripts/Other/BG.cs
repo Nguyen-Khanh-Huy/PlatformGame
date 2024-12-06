@@ -37,6 +37,15 @@ public class BG : MonoBehaviour
     }
     private void MoveBG(GameObject objDefault, GameObject objClone, float speed)
     {
+        if(speed == SpeedTree)
+        {
+            speed = PlayerCtrl.Ins.Rb.velocity.x == 0f ? 0f : SpeedTree;
+        }
+        if (speed == SpeedGrass)
+        {
+            speed = PlayerCtrl.Ins.Rb.velocity.x == 0f ? 0f : SpeedGrass;
+        }
+
         objDefault.transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
         objClone.transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
         if (objDefault.transform.position.x > PlayerCtrl.Ins.transform.position.x + _updatePosX)
