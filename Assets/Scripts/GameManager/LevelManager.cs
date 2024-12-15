@@ -22,7 +22,7 @@ public class LevelManager : Singleton<LevelManager>
             gamePlayTime += Time.deltaTime;
         }
     }
-    public void Initialize(LevelData data)
+    public void LoadData(LevelData data)
     {
         if (data == null) return;
 
@@ -32,7 +32,7 @@ public class LevelManager : Singleton<LevelManager>
         levelPasseds = data.levelPasseds;
         completeTimes = data.completeTimes;
     }
-    public LevelData GetData()
+    public LevelData SaveData()
     {
         return new LevelData(levelId, checkPoints, levelUnlockeds, levelPasseds, completeTimes);
     }

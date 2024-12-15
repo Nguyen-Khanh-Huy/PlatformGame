@@ -36593,7 +36593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5c4a16672ef27e4d94b289704044aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsOnMobile: 0
+  IsOnMobile: 1
   Joystick: {fileID: 1934296565}
 --- !u!1001 &1598350062
 PrefabInstance:

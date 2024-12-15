@@ -12,7 +12,7 @@ public class PlayerManager : Singleton<PlayerManager>
     public int key;
     public int coin;
 
-    public void Initialize(PlayerData data)
+    public void LoadData(PlayerData data)
     {
         if (data == null) return;
 
@@ -22,7 +22,7 @@ public class PlayerManager : Singleton<PlayerManager>
         key = data.key;
         coin = data.coin;
     }
-    public PlayerData GetData()
+    public PlayerData SaveData()
     {
         return new PlayerData(hp, life, bullet, key, coin);
     }

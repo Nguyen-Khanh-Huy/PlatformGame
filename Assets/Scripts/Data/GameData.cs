@@ -23,17 +23,17 @@ public class GameData : Singleton<GameData>
 
     public void SaveGame()
     {
-        playerData = PlayerManager.Ins.GetData();
-        levelData = LevelManager.Ins.GetData();
-        audioData = AudioManager.Ins.GetData();
+        playerData = PlayerManager.Ins.SaveData();
+        levelData = LevelManager.Ins.SaveData();
+        audioData = AudioManager.Ins.SaveData();
         SaveAllData();
     }
 
     public void LoadGame()
     {
         LoadAllData();
-        PlayerManager.Ins.Initialize(playerData);
-        LevelManager.Ins.Initialize(levelData);
-        AudioManager.Ins.Initialize(audioData);
+        PlayerManager.Ins.LoadData(playerData);
+        LevelManager.Ins.LoadData(levelData);
+        AudioManager.Ins.LoadData(audioData);
     }
 }

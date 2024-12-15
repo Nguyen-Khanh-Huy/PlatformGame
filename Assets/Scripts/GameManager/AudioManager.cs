@@ -38,14 +38,14 @@ public class AudioManager : Singleton<AudioManager>
     public AudioClip SfxLevelPassed;
     public AudioClip SfxBtnClick;
 
-    public void Initialize(AudioData data)
+    public void LoadData(AudioData data)
     {
         if (data == null) return;
 
         VolumeMusic = data.VolumeMusic;
         VolumeSFX = data.VolumeSFX;
     }
-    public AudioData GetData()
+    public AudioData SaveData()
     {
         return new AudioData(VolumeMusic, VolumeSFX);
     }
