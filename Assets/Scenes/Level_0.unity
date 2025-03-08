@@ -4032,7 +4032,6 @@ GameObject:
   - component: {fileID: 281313844}
   - component: {fileID: 281313843}
   - component: {fileID: 281313842}
-  - component: {fileID: 281313845}
   m_Layer: 5
   m_Name: BtnFly
   m_TagString: Untagged
@@ -4141,51 +4140,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 281313840}
   m_CullTransparentMesh: 1
---- !u!114 &281313845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 281313840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1583528976}
-          m_TargetAssemblyTypeName: GamePad, Assembly-CSharp
-          m_MethodName: set_CanFly
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1583528976}
-          m_TargetAssemblyTypeName: GamePad, Assembly-CSharp
-          m_MethodName: set_CanFly
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &283604264
 GameObject:
   m_ObjectHideFlags: 0
@@ -29893,6 +29847,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1146906574}
   - component: {fileID: 1146906576}
+  - component: {fileID: 1146906577}
   m_Layer: 5
   m_Name: PanelActionController
   m_TagString: Untagged
@@ -29931,6 +29886,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1146906573}
   m_CullTransparentMesh: 1
+--- !u!114 &1146906577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146906573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b793e398d67e54249a43fda54e540fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _btnAttact: {fileID: 1406217528}
+  _btnBullet: {fileID: 1810916661}
+  _btnFly: {fileID: 281313842}
+  _btnJump: {fileID: 1324334277}
 --- !u!1001 &1149685033
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32254,7 +32225,6 @@ GameObject:
   - component: {fileID: 1324334279}
   - component: {fileID: 1324334278}
   - component: {fileID: 1324334277}
-  - component: {fileID: 1324334280}
   m_Layer: 5
   m_Name: BtnJump
   m_TagString: Untagged
@@ -32363,75 +32333,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1324334275}
   m_CullTransparentMesh: 1
---- !u!114 &1324334280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1324334275}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1583528976}
-          m_TargetAssemblyTypeName: GamePad, Assembly-CSharp
-          m_MethodName: set_CanJump
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-        - m_Target: {fileID: 1583528976}
-          m_TargetAssemblyTypeName: GamePad, Assembly-CSharp
-          m_MethodName: set_CanJumpHolding
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1583528976}
-          m_TargetAssemblyTypeName: GamePad, Assembly-CSharp
-          m_MethodName: set_CanJump
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 1583528976}
-          m_TargetAssemblyTypeName: GamePad, Assembly-CSharp
-          m_MethodName: set_CanJumpHolding
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1325774321
 GameObject:
   m_ObjectHideFlags: 0
@@ -33520,7 +33421,6 @@ GameObject:
   - component: {fileID: 1406217530}
   - component: {fileID: 1406217529}
   - component: {fileID: 1406217528}
-  - component: {fileID: 1406217531}
   m_Layer: 5
   m_Name: BtnAttack
   m_TagString: Untagged
@@ -33629,51 +33529,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1406217526}
   m_CullTransparentMesh: 1
---- !u!114 &1406217531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1406217526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1583528976}
-          m_TargetAssemblyTypeName: GamePad, Assembly-CSharp
-          m_MethodName: set_CanAttack
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1583528976}
-          m_TargetAssemblyTypeName: GamePad, Assembly-CSharp
-          m_MethodName: set_CanAttack
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1001 &1412970256
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36549,52 +36404,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8181188996457501196, guid: f5f88c6117008fd4b99bb8016c3149bf, type: 3}
   m_PrefabInstance: {fileID: 1581963345}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1583528974
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1583528975}
-  - component: {fileID: 1583528976}
-  m_Layer: 0
-  m_Name: GamePad
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1583528975
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1583528974}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1583528976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1583528974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5c4a16672ef27e4d94b289704044aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsOnMobile: 1
-  Joystick: {fileID: 1934296565}
 --- !u!1001 &1598350062
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39425,7 +39234,6 @@ GameObject:
   - component: {fileID: 1810916663}
   - component: {fileID: 1810916662}
   - component: {fileID: 1810916661}
-  - component: {fileID: 1810916664}
   m_Layer: 5
   m_Name: BtnBullet
   m_TagString: Untagged
@@ -39535,51 +39343,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1810916659}
   m_CullTransparentMesh: 1
---- !u!114 &1810916664
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1810916659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1583528976}
-          m_TargetAssemblyTypeName: GamePad, Assembly-CSharp
-          m_MethodName: set_CanBullet
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1583528976}
-          m_TargetAssemblyTypeName: GamePad, Assembly-CSharp
-          m_MethodName: set_CanBullet
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1812254343
 GameObject:
   m_ObjectHideFlags: 0
@@ -43518,4 +43281,3 @@ SceneRoots:
   - {fileID: 1183417233}
   - {fileID: 659633451}
   - {fileID: 357421366}
-  - {fileID: 1583528975}

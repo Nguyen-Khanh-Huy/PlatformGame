@@ -18,9 +18,9 @@ public class PlayerFireBullet: MonoBehaviour
         _curDirBullet = _sp.flipX ? -1 : 1;
         _offset = _sp.flipX ? -1.3f : 0f;
     }
-    private void FireBulletPrb()
+    private void EventFireBullet()
     {
-        var bulletClone = Instantiate(_bulletPrefab, new Vector2(_firePoint.position.x + _offset, _firePoint.position.y), Quaternion.identity);
+        Bullet bulletClone = Instantiate(_bulletPrefab, new Vector2(_firePoint.position.x + _offset, _firePoint.position.y), Quaternion.identity);
         bulletClone.DirBullet = _curDirBullet;
         PlayerManager.Ins.bullet--;
         GameData.Ins.SaveGame();

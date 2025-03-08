@@ -32,6 +32,10 @@ public class UIGamePlayManager : Singleton<UIGamePlayManager>
         LevelManager.Ins.checkPlayTime = true;
 
         _btnPause.onClick.AddListener(() => Show(UIPauseDialog));
+        if (GamePad.Ins.IsOnMobile)
+        { UIMobileGamepad.SetActive(true); }
+        else
+        { UIMobileGamepad.SetActive(false); }
     }
     private void Update()
     {

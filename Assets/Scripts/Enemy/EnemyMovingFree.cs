@@ -34,12 +34,12 @@ public class EnemyMovingFree : Enemy
         {
             if (!_newPos)
             {
+                _newPos = true;
                 ChangeState(EnemyState.Moving);
                 _speedCur = _speedMove;
                 float randomX = Random.Range(_posXLeft, _posXRight);
                 float randomY = Random.Range(_posYDown, _posYUp);
                 _target = new Vector3(randomX, randomY, transform.position.z);
-                _newPos = true;
             }
             if (Vector3.Distance(transform.position, _target) <= 0.5f)
             {
@@ -57,8 +57,8 @@ public class EnemyMovingFree : Enemy
             CheckFlipX(_rb.velocity.x < 0f); 
         }
 
-        _direction = _target - transform.position;
-        _direction.Normalize();
+        _direction = (_target - transform.position).normalized;
+        //_direction.Normalize();
 
         if (_knockBack) return;
         _rb.velocity = _direction * _speedCur;
@@ -92,7 +92,7 @@ public class EnemyMovingFree : Enemy
             if (_timeCheckTarget >= 1f)
             {
                 _target = collision.transform.position;
-                _newPos = false;
+                //_newPos = false;
             }
         }
     }

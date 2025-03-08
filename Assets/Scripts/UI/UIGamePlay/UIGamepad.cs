@@ -8,6 +8,10 @@ public class UIGamepad : MonoBehaviour
 {
     [SerializeField] private TMP_Text _txtBulletCount;
 
+    private void Start()
+    {
+        GamePad.Ins.GetcomponentJoystick();
+    }
     private void Update()
     {
         _txtBulletCount.text = PlayerManager.Ins.bullet.ToString();

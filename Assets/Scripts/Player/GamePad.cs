@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GamePad : Singleton<GamePad>
 {
@@ -33,20 +34,10 @@ public class GamePad : Singleton<GamePad>
     {
         get => !_canMoveLeft && !_canMoveRight && !_canMoveUp && !_canMoveDown && !_canJump && !_canFly && !_canJumpHolding;
     }
-    public override void Awake()
-    {
-        DontDestroy(false);
-    }
-    private void Start()
-    {
-        if (IsOnMobile)
-        {UIGamePlayManager.Ins.UIMobileGamepad.SetActive(true);}
-        else
-        {UIGamePlayManager.Ins.UIMobileGamepad.SetActive(false);}
-    }
+
     private void Update()
     {
-        if(!IsOnMobile)
+        if (!IsOnMobile)
         {
             float hozCheck = Input.GetAxisRaw("Horizontal");
             float vertCheck = Input.GetAxisRaw("Vertical");
@@ -79,5 +70,9 @@ public class GamePad : Singleton<GamePad>
             _canMoveUp = Joystick.yValue > 0 ? true : false;
             _canMoveDown = Joystick.yValue < 0 ? true : false;
         }
+    }
+    public void GetcomponentJoystick()
+    {
+        Joystick = GameObject.Find("ImgJoystick").GetComponent<Joystick>();
     }
 }

@@ -14,7 +14,7 @@ public class UIPauseDialog : MonoBehaviour
     {
         _btnRestart.onClick.AddListener(BtnRestart);
         _btnSetting.onClick.AddListener(BtnSetting);
-        _btnExit.onClick.AddListener(BtnPause);
+        _btnExit.onClick.AddListener(BtnExit);
         _btnResume.onClick.AddListener(() => UIGamePlayManager.Ins.Close(gameObject));
     }
     private void BtnRestart()
@@ -27,7 +27,7 @@ public class UIPauseDialog : MonoBehaviour
         UIGamePlayManager.Ins.Close(gameObject);
         UIGamePlayManager.Ins.Show(UIGamePlayManager.Ins.UISettingDialog);
     }
-    private void BtnPause()
+    private void BtnExit()
     {
         UIGamePlayManager.Ins.Close(gameObject);
         SceneController.Ins.LoadScene(GameScene.MainMenu.ToString());

@@ -26,7 +26,6 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Start()
     {
-        Door door = GameObject.Find("DoorLock").GetComponent<Door>();
         _player = GameObject.Find("Player").transform;
         _curHp = _enemySO.Hp;
         _startPosition = transform.position;
@@ -106,8 +105,8 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void Death()
     {
         AudioManager.Ins.PlaySFX(AudioManager.Ins.SfxDeadEnemy);
-        Destroy(gameObject);
         Vfx();
+        Destroy(gameObject);
     }
     protected virtual void Vfx()
     {

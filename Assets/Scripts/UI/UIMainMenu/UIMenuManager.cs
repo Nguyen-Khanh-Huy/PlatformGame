@@ -9,6 +9,7 @@ public class UIMenuManager : Singleton<UIMenuManager>
     public GameObject UIShopDialog;
     public GameObject UISettingDialog;
 
+    [SerializeField] private Toggle _toggleMobile;
     [SerializeField] private Button _btnPlayGame;
     [SerializeField] private Button _btnLevel;
     [SerializeField] private Button _btnShop;
@@ -23,6 +24,7 @@ public class UIMenuManager : Singleton<UIMenuManager>
         LevelManager.Ins.checkPlayTime = false;
         LevelManager.Ins.gamePlayTime = 0f;
 
+        _toggleMobile.onValueChanged.AddListener(UpdateToggle);
         _btnPlayGame.onClick.AddListener(() => Show(UILevelDialog));
         _btnLevel.onClick.AddListener(() => Show(UILevelDialog));
         _btnShop.onClick.AddListener(() => Show(UIShopDialog));
@@ -37,5 +39,9 @@ public class UIMenuManager : Singleton<UIMenuManager>
     {
         AudioManager.Ins.PlaySFX(AudioManager.Ins.SfxBtnClick);
         obj.SetActive(false);
+    }
+    private void UpdateToggle(bool isOn)
+    {
+        GamePad.Ins.IsOnMobile = isOn;
     }
 }

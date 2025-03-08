@@ -64,7 +64,7 @@ public class AudioManager : Singleton<AudioManager>
     public void PlaySFX(AudioClip sfx)
     {
         AusSFX.clip = sfx;
-        AusMusic.loop = false;
+        AusSFX.loop = false;
         AusSFX.Play();
     }
 }

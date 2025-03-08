@@ -47,9 +47,7 @@ public class LevelManager : Singleton<LevelManager>
         for (int i = 0; i < levelItems.Length; i++)
         {
             if (i == 0)
-            {
-                levelUnlockeds.Add(true);
-            }
+            { levelUnlockeds.Add(true); }
             else
             { levelUnlockeds.Add(false); }
 
@@ -82,6 +80,7 @@ public class LevelManager : Singleton<LevelManager>
     //      GameData.Ins.SaveGame();
     //    }
     //}
+
     public void LevelFail()
     {
         PlayerCtrl.Ins.CurHp = PlayerManager.Ins.PlayerSO.Hp;
