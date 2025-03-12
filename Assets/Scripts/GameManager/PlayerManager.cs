@@ -29,6 +29,8 @@ public class PlayerManager : Singleton<PlayerManager>
     public void PlayerStartFirst()
     {
         hp = PlayerSO.Hp;
+        life = PlayerSO.Life;
+        bullet = PlayerSO.Bullet;
         GameData.Ins.SaveGame();
     }
     public void Revival()

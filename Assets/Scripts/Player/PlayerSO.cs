@@ -7,6 +7,8 @@ public class PlayerSO : ScriptableObject
 {
     [Header("Common:")]
     public int Hp;
+    public int Life;
+    public int Bullet;
     public int Damage;
 
     [Header("Moving:")]

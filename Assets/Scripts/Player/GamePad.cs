@@ -8,17 +8,17 @@ public class GamePad : Singleton<GamePad>
     public bool IsOnMobile;
     public Joystick Joystick;
 
-    private bool _canMoveLeft;
-    private bool _canMoveRight;
-    private bool _canMoveUp;
-    private bool _canMoveDown;
-    private bool _canJump;
-    private bool _canJumpHolding;
-    private bool _canFly;
-    private bool _canBullet;
-    private bool _canAttack;
+    [SerializeField] private bool _canMoveLeft;
+    [SerializeField] private bool _canMoveRight;
+    [SerializeField] private bool _canMoveUp;
+    [SerializeField] private bool _canMoveDown;
+    [SerializeField] private bool _canJump;
+    [SerializeField] private bool _canJumpHolding;
+    [SerializeField] private bool _canFly;
+    [SerializeField] private bool _canBullet;
+    [SerializeField] private bool _canAttack;
 
-    private bool _checkJumpHolding;
+    [SerializeField] private bool _checkJumpHolding;
 
     public bool CanMoveLeft { get => _canMoveLeft; set => _canMoveLeft = value; }
     public bool CanMoveRight { get => _canMoveRight; set => _canMoveRight = value; }

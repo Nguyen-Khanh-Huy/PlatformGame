@@ -36,6 +36,8 @@ public abstract class PlayerCtrl : Singleton<PlayerCtrl>
         if(_curHp == 0)
         {
             PlayerManager.Ins.hp = PlayerManager.Ins.PlayerSO.Hp;
+            PlayerManager.Ins.life = PlayerManager.Ins.PlayerSO.Life;
+            PlayerManager.Ins.bullet = PlayerManager.Ins.PlayerSO.Bullet;
             GameData.Ins.SaveGame();
         }
         _curHp = PlayerManager.Ins.hp;
@@ -106,9 +108,9 @@ public abstract class PlayerCtrl : Singleton<PlayerCtrl>
         }
         if (_vert != 0)
         {
-            _rb.velocity = new Vector2(_rb.velocity.x, _vert * _speedCur);
+            _rb.velocity = new Vector2(_hoz * _speedCur, _vert * _speedCur);
         }
-        else if (_hoz != 0 && Obs.IsOnWaterDeep)
+        else if (_hoz != 0 && Obs.IsOnWaterDeep || _hoz != 0 && Obs.IsOnWaterSurface && !GamePad.Ins.CanJump && !GamePad.Ins.CanJumpHolding)
         {
             _rb.velocity = new Vector2(_rb.velocity.x, 0);
         }

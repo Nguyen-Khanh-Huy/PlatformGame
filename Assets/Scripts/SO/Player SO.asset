@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Player SO
   m_EditorClassIdentifier: 
   Hp: 3
+  Life: 1
+  Bullet: 3
   Damage: 1
   JumpForce: 12
   SpeedMove: 4

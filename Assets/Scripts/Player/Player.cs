@@ -188,6 +188,7 @@ public class Player : PlayerCtrl
             ActiveCol(_colWater);
             GamePad.Ins.CanFly = false;
             GamePad.Ins.CanJump = false;
+            GamePad.Ins.CanJumpHolding = false;
             if (GamePad.Ins.CanMoveLeft || GamePad.Ins.CanMoveRight || GamePad.Ins.CanMoveUp || GamePad.Ins.CanMoveDown)
             {
                 MoveFull();
